@@ -1,0 +1,814 @@
+{
+  "openapi": "3.0",
+  "info": {
+    "description": "Documentación de los endpoints del microservicio BPM-SEGIP.",
+    "version": "0.2.0",
+    "title": "Microservicio BPM Agetic",
+    "page": "https:test.agetic.gob.bo/bpm",
+    "x-logo": {
+      "url": "https://agetic.gob.bo/img/svg/logoAgetic1_c.svg",
+      "backgroundColor": "#FFFFFF"
+    },
+    "contact": {
+      "email": "imujica@agetic.gob.bo"
+    },
+    "licence": {
+      "name": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:1987",
+      "description": "Desarrollo"
+    }
+  ],
+  "tags": [
+    {
+      "name": "CONFIGURACION",
+      "description": "Crea una configuración de un componente \"Persona\" para resolver la petición por cualquiera de los dos métodos."
+    },
+    {
+      "name": "PARAMETROS",
+      "description": "Guarda la configuración paramétrica del microservicio."
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/configuraciones": {
+      "post": {
+        "tags": [
+          "CONFIGURACION"
+        ],
+        "summary": "Crear configuración",
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "description": "Para guardar una nueva configuración se debe enviar un array",
+        "operationId": "crearConfiguracion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CONFIGURACION-ResponseNuevaConfiguracion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de consumo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CONFIGURACION-ResponseErrorNuevaConfiguracion"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Payload con los datos",
+          "required": "true",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/CONFIGURACION-RequestNuevaConfiguracion"
+              }
+            }
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "cURL",
+            "source": "$ curl -X POST   http://localhost:1987/configuraciones -H 'Cache-Control: no-cache' -H 'Content-Type: application/json' -d '{\"operacion\" : \"contrastar\",\"entrada\": [\"numeroDocumento\",\"fechaNacimiento\",\"primerApellido\",\"tipoPersona\"],\"salida\": [\"fechaNacimiento\",\"nombres\",\"primerApellido\",\"segundoApellido\",\"nombres\"],\"origen\": \"BPM\"}"
+          }
+        ],
+        "iop-catalogo": {
+          "identificador": "67",
+          "nombre": "Búsqueda de matrículas",
+          "nombreArchivo": "buscarMatricula",
+          "datosEntrada": "idMatricula, apPaterno, idFormacion",
+          "datosSalida": "cedula, apPaterno, apMaterno, apellidos, nombres, codSexo, fechaNac, foto, idFor, tipoFormacion, nivelAcademico, carrera, institutoFormacion, titulo, matricula, codigoNivelAcademico, datval, usrval, fecemimat, codigoVerificacion",
+          "estado": "ACTIVO",
+          "documentacion": "",
+          "serviciosRelacionados": "",
+          "palabrasClave": "sirepro, salud, matricula"
+        }
+      }
+    },
+    "/configuraciones/resolver/:idConfiguracion": {
+      "post": {
+        "tags": [
+          "CONFIGURACION"
+        ],
+        "summary": "Resolver configuración",
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "description": "Resuelve una configuración creada, y devuelve los campos de salida solicitados.",
+        "operationId": "resolverConfiguracion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CONFIGURACION-ResponseResolverConfiguracion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de consumo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CONFIGURACION-ResponseErrorResolverConfiguracion"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Payload con los datos",
+          "required": "true",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/CONFIGURACION-RequestResolverConfiguracion"
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "cURL",
+            "source": "$ curl -X POST  http://localhost:1987/configuraciones/resolver/5afdf263d2b0630e988f6fdb  -H 'Cache-Control: no-cache'  -H 'Content-Type: application/json'  -d '[ { \"campo\" : \"numeroDocumento\", \"valor\": \"764415 \" }, { \"campo\": \"fechaNacimiento\", \"valor\": \"10/11/2003\"}]'"
+          }
+        ]
+      }
+    },
+    "/configuraciones/:idConfiguracion": {
+      "get": {
+        "tags": [
+          "CONFIGURACION"
+        ],
+        "summary": "Obtener configuración",
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "description": "Devuelve una configuración a partir de un identificador.",
+        "operationId": "obtenerConfiguracion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CONFIGURACION-ResponseNuevaConfiguracion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de consumo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CONFIGURACION-ResponseErrorObtenerConfiguracion"
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "cURL",
+            "source": "$ curl -X POST  http://localhost:1987/configuraciones/resolver/5afdf263d2b0630e988f6fdb  -H 'Cache-Control: no-cache'  -H 'Content-Type: application/json'  -d '[ { \"campo\" : \"numeroDocumento\", \"valor\": \"764415 \" }, { \"campo\": \"fechaNacimiento\", \"valor\": \"10/11/2003\"}]'"
+          }
+        ]
+      }
+    },
+    "/parametros": {
+      "get": {
+        "tags": [
+          "PARAMETROS"
+        ],
+        "summary": "Obtener parametricas",
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "description": "Devuelve una configuración desde el id",
+        "operationId": "obtenerConfiguracion",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CONFIGURACION-ResponseParametros"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de consumo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/CONFIGURACION-ResponseErrorObtenerConfiguracion"
+                }
+              }
+            }
+          }
+        },
+        "x-code-samples": [
+          {
+            "lang": "cURL",
+            "source": "$curl -X GET http://localhost:1987/parametros -H 'Cache-Control: no-cache' -H 'Content-Type: application/json'"
+          }
+        ]
+      }
+    },
+    "/respuestas":{
+      "post": {
+      "tags": ["RESPUESTAS"],
+      "sumary": "Validar los datos de una respuesta",
+      "security": [ {
+        "jwtAuth": []
+      }],
+      "description": "Valida los datos personales de una persona con la respuesta almacena anteriormente en el microservicio",
+      "operationId": "validaRespuesta",
+      "consumes":[
+        "application/json"
+      ],
+      "produces":[
+        "application/json"
+      ],
+      "responses": {
+        "200": {
+          "description": "Operación exitosa",
+          "content": {
+            "application/json":{
+              "schema":{
+                "$ref":"#/definitions/RESPUESTA-ResponseValidar"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Error de consumo.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/RESPUESTA-ResponseErrorValidar"
+              }
+            }
+          }
+        }
+      },
+      "requestBody": {
+        "description": "Payload con los datos",
+        "required": "true",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "nombres": {
+                    "type": "string"
+                  },
+                  "primerApellido": {
+                    "type": "string"
+                  },
+                  "segundoApellido": {
+                    "type": "string"
+                  },
+                  "tipoPersona": {
+                    "type": "int"
+                  },
+                  "ocupacion": {
+                    "type": "string"
+                  },
+                  "idRespuesta": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-code-samples":[
+        {
+          "lang":"cURL",
+          "source":"$ curl -X POST http://localhost:1987/respuestas -H 'Content-Type: application/json'  -d '[ { \"idRespuesta\" : \"5b296ef1b857bd09e0af875a\", \"numeroDocumento\" : \"10794552\", \"fechaNacimiento\" : \"31/10/1957\", \"primerApellido\" : \"AVIRIffRI\",\"segundoApellido\" : \"ATOYAY\",\"nombres\" : \"OSCAR\", \"direccion\" : \"adsfasf\"]"
+        }
+      ]
+    }
+  }
+  },
+  "securityDefinitions": {
+    "jwtAuth": {
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT"
+    }
+  },
+  "definitions": {
+    "RESPUESTA-ResponseValidar": {
+      "type": "object",
+      "properties": {
+        "finalizado": {
+          "type": "bool"
+        },
+        "mensaje": {
+          "type": "string"
+        },
+        "datos": {
+          "type": "object"
+        }
+      },
+      "example": {
+        "finalizado": true,
+        "mensaje": "La verificación de datos fue realizada con éxito. ",
+        "datos": null
+      }
+    },
+    "RESPUESTA-ResponseErrorValidar": {
+      "type": "object",
+      "properties": {
+        "finalizado": {
+          "type": "bool"
+        },
+        "mensaje": {
+          "type": "string"
+        },
+        "datos": {
+          "type": "object"
+        }
+      },
+      "example": {
+        "finalizado": false,
+        "mensaje": "Ocurrió un error en la verificación de datos. La persona en la fila 1 no paso la validación de datos.\n Falló la verificación del campo primerApellido.",
+        "datos": null
+      }
+    },
+    "CONFIGURACION-ResponseNuevaConfiguracion": {
+      "type": "object",
+      "properties": {
+        "finalizado": {
+          "type": "boolean",
+          "description": "Indica si la operacion fue ejecutada de manera exitosa"
+        },
+        "mensaje": {
+          "type": "string",
+          "description": "Mensaje de  la respuesta"
+        },
+        "datos": {
+          "type": "object",
+          "description": "Configuracion",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "Identificador único de la configuración"
+            },
+            "operacion": {
+              "type": "string",
+              "description": "Es el tipo de operación que se va a realizar",
+              "enum": [
+                "contrastar",
+                "recuperar"
+              ]
+            },
+            "entrada": {
+              "type": "array",
+              "description": "El listado de campos que se recibirá desde el origen"
+            },
+            "salida": {
+              "type": "array",
+              "description": "El listado de campos que se enviara desde el microservicio"
+            },
+            "origen": {
+              "type": "string",
+              "description": "Descripcion del origen"
+            }
+          }
+        }
+      },
+      "example": {
+        "finalizado": true,
+        "mensaje": "La configuración fue creada correctamente",
+        "datos": {
+          "_id": "5b02df7a2c13b144a5a037cc",
+          "operacion": "contrastar",
+          "entrada": [
+            "numeroDocumento",
+            "fechaNacimiento",
+            "primerApellido",
+            "tipoPersona"
+          ],
+          "salida": [
+            "fechaNacimiento",
+            "nombres",
+            "primerApellido",
+            "segundoApellido",
+            "nombres"
+          ],
+          "origen": "BPM"
+        }
+      }
+    },
+    "CONFIGURACION-RequestNuevaConfiguracion": {
+      "type": "object",
+      "properties": {
+        "operacion": {
+          "type": "string",
+          "description": "Indica el tipo de operación a realizar"
+        },
+        "entrada": {
+          "type": "array",
+          "description": "Lista de todos los campos de entrada"
+        },
+        "salida": {
+          "type": "array",
+          "description": "Lista de todos los campos de salida"
+        },
+        "origen": {
+          "type": "string",
+          "description": "Origen de la solicitud"
+        }
+      },
+      "example": {
+        "operacion": "contrastar",
+        "entrada": [
+          "numeroDocumento",
+          "fechaNacimiento",
+          "primerApellido",
+          "tipoPersona"
+        ],
+        "salida": [
+          "fechaNacimiento",
+          "nombres",
+          "primerApellido",
+          "segundoApellido",
+          "nombres"
+        ],
+        "origen": "BPM"
+      }
+    },
+    "CONFIGURACION-ResponseErrorNuevaConfiguracion": {
+      "type": "object",
+      "properties": {
+        "finalizado": {
+          "type": "boolean",
+          "description": "Indica si se finalizó la respuesta"
+        },
+        "mensaje": {
+          "type": "string",
+          "description": "Es el mensaje de respuesta del endpoint"
+        },
+        "datos": {
+          "type": "object",
+          "description": ""
+        }
+      },
+      "example": {
+        "finalizado": false,
+        "mensaje": "La configuración enviada no es valida para el método que desea interoperar. Falta el campo numeroDocumento.",
+        "datos": null
+      }
+    },
+    "CONFIGURACION-ResponseResolverConfiguracion": {
+      "type": "object",
+      "properties": {
+        "finalizado": {
+          "type": "boolean",
+          "description": "Indica si la operacion fue ejecutada de manera exitosa."
+        },
+        "mensaje": {
+          "type": "string",
+          "description": "Mensaje de  la respuesta"
+        },
+        "datos": {
+          "type": "object",
+          "description": "Configuracion",
+          "properties": {
+            "campos": {
+              "type": "array",
+              "description": "Array con los campos y valores de la petición."
+            },
+            "configEntrada": {
+              "type": "array",
+              "description": "Los campos entrada de la configuración creada."
+            },
+            "configSalida": {
+              "type": "array",
+              "description": "Los campos salida de la configuración creada."
+            },
+            "respuesta": {
+              "type": "array",
+              "description": "El listado de campos  y valores evaluados por el microservicio",
+              "items": {
+                "$ref": "#/definitions/CONFIGURACION-RequestResolverConfiguracion"
+              }
+            }
+          }
+        }
+      },
+      "example": {
+        "finalizado": true,
+        "mensaje": "Registro encontrado.",
+        "datos": {
+          "campos": [
+            {
+              "campo": "numeroDocumento",
+              "valor": "7644156"
+            },
+            {
+              "campo": "fechaNacimiento",
+              "valor": "10/11/2003"
+            }
+          ],
+          "configEntrada": [
+            "numeroDocumento",
+            "fechaNacimiento"
+          ],
+          "configSalida": [
+            "numeroDocumento",
+            "fechaNacimiento",
+            "nombres",
+            "primerApellido",
+            "segundoApellido",
+            "tipoPersona"
+          ],
+          "respuesta": [
+            {
+              "campo": "numeroDocumento",
+              "valor": "7644156"
+            },
+            {
+              "campo": "fechaNacimiento",
+              "valor": "10/11/2003"
+            },
+            {
+              "campo": "nombres",
+              "valor": "CARLA"
+            },
+            {
+              "campo": "primerApellido",
+              "valor": "CASTRO"
+            },
+            {
+              "campo": "segundoApellido",
+              "valor": "ARTEAGA"
+            }
+          ]
+        }
+      }
+    },
+    "CONFIGURACION-RequestResolverConfiguracion": {
+      "type": "object",
+      "properties": {
+        "campo": {
+          "type": "string",
+          "description": "Nombre del campo"
+        },
+        "valor": {
+          "type": "string",
+          "description": "Valor del campo"
+        }
+      },
+      "example": [
+        {
+          "campo": "numeroDocumento",
+          "valor": "7644156"
+        },
+        {
+          "campo": "fechaNacimiento",
+          "valor": "10/11/2003"
+        }
+      ]
+    },
+    "CONFIGURACION-ResponseErrorResolverConfiguracion": {
+      "type": "object",
+      "properties": {
+        "finalizado": {
+          "type": "boolean",
+          "description": "Indica si se finalizó con éxito la respuesta"
+        },
+        "mensaje": {
+          "type": "string",
+          "description": "Es el mensaje de respuesta del endpoint"
+        },
+        "datos": {
+          "type": "object",
+          "description": ""
+        }
+      },
+      "example": {
+        "finalizado": false,
+        "mensaje": "Falta el campo fechaNacimiento.",
+        "datos": null
+      }
+    },
+    "CONFIGURACION-ResponseErrorObtenerConfiguracion": {
+      "type": "object",
+      "properties": {
+        "finalizado": {
+          "type": "boolean",
+          "description": "Indica si se finalizó con éxito la respuesta"
+        },
+        "mensaje": {
+          "type": "string",
+          "description": "Es el mensaje de respuesta del endpoint"
+        },
+        "datos": {
+          "type": "object",
+          "description": ""
+        }
+      },
+      "example": {
+        "finalizado": false,
+        "mensaje": "No existe el registro solicitado.",
+        "datos": null
+      }
+    },
+    "CONFIGURACION-ResponseParametros": {
+      "type": "object",
+      "properties": {
+        "finalizado": {
+          "type": "boolean",
+          "description": "Indica si se finalizó con éxito la respuesta"
+        },
+        "mensaje": {
+          "type": "string",
+          "description": "Es el mensaje de respuesta del endpoint"
+        },
+        "datos": {
+          "type": "object",
+          "description": "Es el cuerpo de la respuesta.",
+          "properties": {
+            "total": {
+              "type" : "integer"
+            },
+            "listado": {
+              "type": "array"
+
+            }
+          }
+        }
+      },
+      "example": {
+        "finalizado": true,
+        "mensaje": "Datos obtenidos correctamente",
+        "datos": {
+          "total": 1,
+          "listado": [
+            {
+              "_id": "5afa1125f2c0275543c9c22f",
+              "version": "1",
+              "tipo": "parametro",
+              "contrastar": {
+                "method": "GET",
+                "urlStatus": "https://test.agetic.gob.bo/kong/fake2/segip/v2/status",
+                "url": "http://test.agetic.gob.bo/kong/fake2/segip/v2/personas/contrastacion",
+                "token": "eyJhbGciOiJIadfdasfasfasf",
+                "campos": [
+                  {
+                    "campo": "tipoPersona",
+                    "obligatorio": true
+                  },
+                  {
+                    "campo": "numeroDocumento",
+                    "obligatorio": true
+                  },
+                  {
+                    "campo": "primerApellido",
+                    "obligatorio": true
+                  },
+                  {
+                    "campo": "fechaNacimiento",
+                    "obligatorio": false
+                  },
+                  {
+                    "campo": "nombres",
+                    "obligatorio": false
+                  },
+                  {
+                    "campo": "segundoApellido",
+                    "obligatorio": false
+                  }
+                ]
+              },
+              "recuperar": {
+                "method": "GET",
+                "urlStatus": "https://test.agetic.gob.bo/kong/fake2/segip/v2/status",
+                "url": "http://test.agetic.gob.bo/kong/fake2/segip/v2/personas/",
+                "token": "eyJhbGciOiJIUzI1asdfasdfasdfafdas",
+                "campos": [
+                  {
+                    "campo": "tipoPersona",
+                    "obligatorio": false
+                  },
+                  {
+                    "campo": "numeroDocumento",
+                    "obligatorio": true
+                  },
+                  {
+                    "campo": "fechaNacimiento",
+                    "obligatorio": true
+                  },
+                  {
+                    "campo": "nombres",
+                    "obligatorio": false
+                  },
+                  {
+                    "campo": "primeroApellido",
+                    "obligatorio": false
+                  },
+                  {
+                    "campo": "segundoApellido",
+                    "obligatorio": false
+                  }
+                ]
+              },
+              "campos": [
+                {
+                  "campo": "tipoPersona"
+                },
+                {
+                  "campo": "numeroDocumento"
+                },
+                {
+                  "campo": "fechaNacimiento"
+                },
+                {
+                  "campo": "nombres"
+                },
+                {
+                  "campo": "primeroApellido"
+                },
+                {
+                  "campo": "segundoApellido"
+                }
+              ],
+              "deleted": false
+            }
+          ]
+        }
+      }
+    },
+    "CONFIGURACION-Estado": {
+      "type": "object",
+      "properties": {
+        "estado": {
+          "type": "string",
+          "description": "estado de la API REST."
+        }
+      },
+      "example": {
+        "estado": "El servicio se encuentra disponible"
+      }
+    }
+  }
+}

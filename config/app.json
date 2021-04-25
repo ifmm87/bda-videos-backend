@@ -1,0 +1,5 @@
+{
+  "mongoUrl": "mongodb://localhost/movies",
+  "mongoUrlDev": "mongodb://localhost/movies",
+  "mongoUrlTest": "mongodb://localhost/movies"
+}

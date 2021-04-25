@@ -1,0 +1,37 @@
+{
+  "name": "agetic-bpm-microservicio-segip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava tests/integracion/* --serial --verbose",
+    "start": "PORT=1987 NODE_ENV=production DEBUG=microservicio-segip* node index.js",
+    "start:dev": "NODE_ENV=development DEBUG=microservicio-segip* nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^6.4.0",
+    "ajv-i18n": "^3.1.0",
+    "ava": "^0.25.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "debug": "^3.1.0",
+    "express": "^4.16.3",
+    "https": "^1.0.0",
+    "inquirer": "^5.2.0",
+    "mongoose": "^5.0.14",
+    "nodemon": "^1.17.3",
+    "path": "^0.12.7",
+    "pow-mongodb-fixtures": "^0.14.0",
+    "supertest": "^3.1.0"
+  },
+  "ava": {
+    "concurrency": 5,
+    "failFast": true,
+    "failWithoutAssertions": false,
+    "tap": false,
+    "powerAssert": false
+  }
+}
