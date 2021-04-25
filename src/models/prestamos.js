@@ -11,7 +11,6 @@ let schema = Schema({
   costoUnitario: { type: Number },
   descuento: { type: Number },
   importeTotal: { type: Number, default: 0 },
-  peticion: { type: Object, required: true },
   createAt: { type: Date, default: Date.now },
   updateAt: { type: Date, default: Date.now },
   deleteAt: { type: Date, default: Date.now },

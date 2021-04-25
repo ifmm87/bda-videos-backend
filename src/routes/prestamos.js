@@ -1,11 +1,9 @@
 const express = require('express');
 const app = express.Router();
 const { Prestamos } = require('../controllers');
-// const { validaConfiguracion, validaResolver } = require('../middleware/configuracion');
 app.get('/', Prestamos.listar);
-// app.get('/:idConfiguracion', Configuracion.mostrar);
-// app.post('/', validaConfiguracion, Configuracion.crear);
-// app.post('/resolver/:idConfiguracion', validaResolver, Configuracion.resolver);
-// app.put('/', Configuracion.modificar);
-// app.delete('/', Configuracion.eliminar);
+app.get('/:idPrestamo', Prestamos.mostrar);
+app.post('/', Prestamos.crear);
+app.put('/:idPrestamo', Prestamos.modificar);
+app.delete('/', Prestamos.eliminar);
 module.exports = app;
