@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "ava tests/integracion/* --serial --verbose",
-    "start": "PORT=1987 NODE_ENV=production DEBUG=microservicio-segip* node index.js",
-    "start:dev": "NODE_ENV=development DEBUG=microservicio-segip* nodemon index.js"
+    "start": "PORT=1987 NODE_ENV=production DEBUG=videos* nodemon index.js",
+    "start:dev": "NODE_ENV=development DEBUG=videos* nodemon index.js"
   },
   "author": "",
   "license": "ISC",

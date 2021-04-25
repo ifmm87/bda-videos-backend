@@ -1,11 +1,9 @@
 const express = require('express');
 const app = express.Router();
 const { Clientes } = require('../controllers');
-// const { validaConfiguracion, validaResolver } = require('../middleware/configuracion');
 app.get('/', Clientes.listar);
-// app.get('/:idConfiguracion', Configuracion.mostrar);
-// app.post('/', validaConfiguracion, Configuracion.crear);
-// app.post('/resolver/:idConfiguracion', validaResolver, Configuracion.resolver);
-// app.put('/', Configuracion.modificar);
-// app.delete('/', Configuracion.eliminar);
+app.get('/:idCliente', Clientes.mostrar);
+app.post('/', Clientes.crear);
+app.put('/:idCliente', Clientes.modificar);
+app.delete('/:idCliente', Clientes.eliminar);
 module.exports = app;

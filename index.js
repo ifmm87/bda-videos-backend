@@ -4,14 +4,13 @@ const app = require('./app');
 const config = require('./config/app');
 const PORT = process.env.PORT || 1987;
 const debug = new Debug('videos');
-debug(config);
 async function start() {
   try {
     if (process.env.NODE_ENV === 'production') {
-      await mongoose.connect(config.mongoUrl)
+      await mongoose.connect(config.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     }
     if (process.env.NODE_ENV === 'development') {
-      await mongoose.connect(config.mongoUrlDev)
+      await mongoose.connect(config.mongoUrlDev, { useNewUrlParser: true, useUnifiedTopology: true })
       mongoose.set('debug', true);
     }
     app.listen(PORT, () => {

@@ -45,7 +45,7 @@ module.exports = {
         listado = listado.sort(order)
       }
       listado = await listado
-      const total = await modelo.find(filter).count()
+      const total = await modelo.find(filter).countDocuments()
       return {total, listado}
     } catch (error) {
       throw error
@@ -120,7 +120,7 @@ module.exports = {
       const existe = await modelo.findOne(filter)
       if (existe) {
         delete parametros._id
-        const item = await modelo.where(filter).update({$set: parametros})
+        const item = await modelo.where(filter).updateOne({$set: parametros})
         if (item.nModified == 0 && item.n == 0) {
           throw new Error('No Tiene permisos de modificar el registro.')
         } else {
