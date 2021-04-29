@@ -10,6 +10,7 @@ let schema = Schema({
   diasPrestamo: { type: Number },
   costoUnitario: { type: Number },
   descuento: { type: Number },
+  devuelto: { type: Boolean },
   importeTotal: { type: Number, default: 0 },
   createAt: { type: Date, default: Date.now },
   updateAt: { type: Date, default: Date.now },
