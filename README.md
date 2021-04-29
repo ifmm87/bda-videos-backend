@@ -1,19 +1,27 @@
 
 # Proyecto Final de Módulo
-### Maestría en Ciencia de Datos v2
-### Base de datos avanzadas
-### Universidad Católica Boliviana "San Pablo"
-## Integrantes
-- Ever Favio Argollo Ticona
-- Ivan Fernando Mujica Mamani
+#### Maestría en Ciencia de Datos v2
+#### Base de Datos Avanzadas
+#### Universidad Católica Boliviana "San Pablo"
+#### Ivan Fernando Mujica Mamani
 
+## 1. Introducción
+Este proyecto en una aplicacion de tipo API REST, el stack de tecnologías usado es:
+  - Nodejs
+    - Express
+    - Mongoose
+  - MongoDB  
 
-Este proyecto tiene la finalidad de gestionar prestamos de una tienda de videos en DVD.
+La documentación de los servicios del API REST  se encuentrán en:
+ > [http://localhost:1987](http://localhost:1987)
 
+Describen la especificación de los servicios web, también como consumirlos.
+Este conjunto de servicios satisfacen las reglas de negocio descritas a continuación:
 
-## Flujo:
+## Reglas de negocio:
 #### Gestión de Videos:
   1. Deseo registrar un nuevo video, guardando la siguiente información:
+
     a. Duración en minutos.
     b. Genero: Drama, Comedia, suspenso, etc.
     c. Titulo de la pelicula, con varios alternativos
@@ -27,6 +35,7 @@ Este proyecto tiene la finalidad de gestionar prestamos de una tienda de videos 
 robo, etc.)
 #### Gestión de Clientes:
   1. Deseo poder registrar nuevos clientes, guardando la siguiente información.
+
     a. Nombre completo.
     b. Número de telefono celular.
     c. Correo electrónico.
@@ -39,6 +48,7 @@ robo, etc.)
 dicididó bloquearlo (los clientes bloqueados no pueden rentar películas).
 #### Gestión de Préstamos:
   1. Deseo podér registrar el prestamo de una película, para lo cual se realizan las siguientes actividades.
+
     a. Buscar película por nombre, genero, actor o nominaciones al Oscar.
     b. Agregar la película que se desea prestar.
     c. Buscar mas peliculas si el cliente desea llevar varias
@@ -46,6 +56,7 @@ dicididó bloquearlo (los clientes bloqueados no pueden rentar películas).
     e. Calcular el importe de acuerdo a la fecha de devolución.
     f. Emitir la factura con el importe total.
   2. Deseo poder definir y modificar costos por día de prestamo.
+
     a. 1 día: 2 Bs.
     b. 2 días: 3 Bs.
     c. 3 días: 4 Bs
@@ -57,6 +68,26 @@ dicididó bloquearlo (los clientes bloqueados no pueden rentar películas).
     b. Si lleva mas de 5 peliculas 10% de descuento.
 
 
-# Instalacion del proyecto
-Para una correcta instalación ver el siguiente enlace
+# 2. Instalación del proyecto
+Para una correcta instalación ver el siguiente enlace:
 > [INSTALL.md](INSTALL.md)
+# 3. Configuración en alta disponibilidad de la base de datos.
+> [CONFIG-HA.md](CONFIG-HA.md)
+# 4. Entregables
+
+  a) Diccionario de datos
+> [INSTALL-HA.md](CONFIG-HA.md)
+
+  b y c) Script de creación y script de llenado de la base de datos.
+  Solo si se quiere hacer una instalación de la base de datos y no asi de la aplicación
+  ya que la misma crea  y realiza el poblado de la base datos con data de prueba como esta descrito en el punto 2.
+
+> [INSTALL-HA.md](CONFIG-HA.md)
+
+  d) Consultas a la base de datos  
+
+  Solo si se tiene instalado la base de datos y no asi la aplicación, por que cada consulta 
+  esta disponible en su endpoint respectivo.
+
+
+
