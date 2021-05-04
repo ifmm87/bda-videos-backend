@@ -19,7 +19,7 @@ module.exports = {
       mensajeError(res, error, 400)
     }
   },
-  mostrar: async (req, res) => {
+    mostrar: async (req, res) => {
     try {
       const { idCliente } = req.params;
       const respuesta = await mostrar(Clientes.db, { id: idCliente });

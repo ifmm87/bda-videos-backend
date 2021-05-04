@@ -12,6 +12,15 @@ module.exports = {
       mensajeError(res, error, 400)
     }
   },
+listarDevueltos: async (req, res) => {
+    debug('listando clientes');
+    try {
+      const respuesta = await Prestamos.db.find({devuelto: true});
+      mensajeExito(res, 'listado recuperado correctamente', 200, respuesta);
+    } catch (error) {
+      mensajeError(res, error, 400)
+    }
+  },
   mostrar: async (req, res) => {
     try {
       const { idPrestamo } = req.params;
