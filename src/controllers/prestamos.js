@@ -12,10 +12,38 @@ module.exports = {
       mensajeError(res, error, 400)
     }
   },
-listarDevueltos: async (req, res) => {
+  listarDevueltos: async (req, res) => {
     debug('listando clientes');
     try {
       const respuesta = await Prestamos.db.find({devuelto: true});
+      mensajeExito(res, 'listado recuperado correctamente', 200, respuesta);
+    } catch (error) {
+      mensajeError(res, error, 400)
+    }
+  },
+ listarNoDevueltos: async (req, res) => {
+    debug('listando clientes');
+    try {
+      const respuesta = await Prestamos.db.find({
+        devuelto: false,
+        fechaDevolucion: {
+          '$lte': new Date()
+        }
+      });
+      mensajeExito(res, 'listado recuperado correctamente', 200, respuesta);
+    } catch (error) {
+      mensajeError(res, error, 400)
+    }
+  },
+  listarInfractores: async (req, res) => {
+    debug('listando clientes');
+    try {
+      const respuesta = await Prestamos.db.find({
+        devuelto: false,
+        fechaDevolucion: {
+          "$lte": new Date()
+        }
+      });
       mensajeExito(res, 'listado recuperado correctamente', 200, respuesta);
     } catch (error) {
       mensajeError(res, error, 400)

@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors')
 const bodyParser = require('body-parser');
-const {Prestamos, Videos, Clientes} = require('./src/routes');
+const {Prestamos, Videos, Clientes, Docs} = require('./src/routes');
 const app = express();
 app.use(express.static('docs'));
 app.use(bodyParser.json());
@@ -13,6 +13,7 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, PUT, OPTIONS');
   next();
 });
+app.use('/apidoc', express.static('./docs/openapi.yaml'));
 //---------------Rutas------------//
 app.use('/prestamos', Prestamos);
 app.use('/videos', Videos);
