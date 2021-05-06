@@ -1,6 +1,8 @@
 const { Prestamos } = require('../models');
 const { listar, crear, mostrar, actualizar } = require('../utils/dao');
 const { mensajeError, mensajeExito } = require('../utils/handleResponse');
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 const Debug = require('debug');
 const debug = new Debug('Prestamos_controller:');
 module.exports = {
@@ -52,7 +54,79 @@ module.exports = {
   mostrar: async (req, res) => {
     try {
       const { idPrestamo } = req.params;
-      const respuesta = await mostrar(Prestamos.db, { id: idPrestamo });
+      const respuesta = await Prestamos.db.aggregate([
+        {
+          $match: { _id: ObjectId(idPrestamo) }
+        },
+        {
+          $lookup: {
+                    from: 'clientes',
+                    localField: 'cliente',
+                    foreignField: '_id',
+                    as: 'cliente'
+                  }
+        },
+        {
+          $unwind: '$cliente'
+        },
+        {
+          $project: {
+            _id: 1,
+            fechaDevolucion: 1,
+            devuelto: 1,
+            createAt: 1,
+            diasPrestamo:1,
+            importeTotal: 1,
+            descuento: 1,
+            cliente: '$cliente.nombreCompleto',
+            celular: '$cliente.celular',
+            fechaNacimiento: '$cliente.fechaNacimiento',
+            videos: 1
+          }
+        },
+        {
+          $unwind: '$videos'
+        },
+        {
+          $lookup: {
+                    from: 'videos',
+                    localField: 'videos',
+                    foreignField: '_id',
+                    as: 'videosDetalles'
+          }
+        },
+        { $unwind: '$videosDetalles'},
+        { $project: {
+            '_id': '$_id',
+            'fechaDevolucion': 1,
+            'devuelto':1,
+            'createAt': 1,
+            'cliente': 1,
+            'celular': 1,
+            diasPrestamo:1,
+            importeTotal: 1,
+            descuento: 1,
+            'fechaNacimiento': 1,
+            'video.titulo': '$videosDetalles.titulo',
+            'video.costoUnitario': '$videosDetalles.costoUnitario',
+            'video.reparto': '$videosDetalles.reparto',
+            'video.director': '$videosDetalles.director',
+          }
+        },
+        { "$group": {
+              "_id": "$_id",
+              "cliente": { "$first": "$cliente" },
+              "devuelto": { "$first": "$devuelto" },
+              "fechaNacimiento": { "$first": "$fechaNacimiento" },
+              "fechaDevolucion": { "$first": "$fechaDevolucion" },
+              "celular": { "$first": "$celular" },
+              "diasPrestamo": { "$first": "$diasPrestamo" },
+              "importeTotal": { "$first": "$importeTotal" },
+              "descuento": { "$first": "$descuento" },
+              "fechaPrestamo": { "$first": "$createAt" },
+              "videos": { "$push": "$video" }
+          }}
+      ]);
       if (respuesta) {
         mensajeExito(res, 'Prestamo recuperado correctamente', 200, respuesta);
       } else {
