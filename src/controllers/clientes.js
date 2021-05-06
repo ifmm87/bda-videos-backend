@@ -1,6 +1,8 @@
-const { Clientes } = require('../models');
+const { Clientes, Prestamos } = require('../models');
 const { listar, crear, mostrar, actualizar } = require('../utils/dao');
 const { mensajeError, mensajeExito } = require('../utils/handleResponse');
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 const { validaObligatorio,
   validaEntrada,
   armaRecuperar,
@@ -14,6 +16,65 @@ module.exports = {
     debug('listando clientes');
     try {
       const respuesta = await listar(Clientes.db, {}, {}, {});
+      mensajeExito(res, 'listado recuperado correctamente', 200, respuesta);
+    } catch (error) {
+      mensajeError(res, error, 400)
+    }
+  },
+  historial: async (req, res) => {
+    debug('historial clientes');
+    try {
+      const idCliente = req.params.idCliente;
+      const respuesta = await Prestamos.db.aggregate([
+          {
+            $match: { cliente: ObjectId(idCliente) } 
+          },
+          {
+            $lookup: {
+                      from: 'clientes',
+                      localField: 'cliente',
+                      foreignField: '_id',
+                      as: 'cliente'
+                    }
+          },
+          {
+            $unwind: '$cliente'
+          },
+          {
+            $project: {
+              _id: 1,
+              cliente: '$cliente.nombreCompleto',
+              fechaPrestamo: '$createAt',
+              videos: 1
+            }
+          },
+          {
+            $unwind: '$videos'
+          },
+          {
+            $lookup: {
+                      from: 'videos',
+                      localField: 'videos',
+                      foreignField: '_id',
+                      as: 'videosDetalles'
+            }
+          },
+          { $unwind: '$videosDetalles'},
+          { $project: {
+              '_id': '$_id',
+              'clente': '$cliente',
+              'fechaPrestamo': '$fechaPrestamo',
+              'videoTitulo': '$videosDetalles.titulo'
+            }
+          }, 
+          { $sort : { fechaPrestamo : -1 } },
+          { "$group": {
+                "_id": "$videoTitulo",
+                count: { $sum: 1 },
+                "fechas": { "$push": "$fechaPrestamo" },
+            }
+          }
+        ]);
       mensajeExito(res, 'listado recuperado correctamente', 200, respuesta);
     } catch (error) {
       mensajeError(res, error, 400)

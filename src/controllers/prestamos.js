@@ -51,6 +51,42 @@ module.exports = {
       mensajeError(res, error, 400)
     }
   },
+  ranking: async (req, res) => {
+    debug('ranking videos ');
+    try {
+      const respuesta = await Prestamos.db.aggregate([
+        {
+          $unwind: '$videos'
+        },
+        {
+          $lookup: {
+                    from: 'videos',
+                    localField: 'videos',
+                    foreignField: '_id',
+                    as: 'videosDetalles'
+          }
+        },
+        { $unwind: '$videosDetalles'},
+        { $project: {
+            '_id': '$_id',
+            'fechaPrestamo': '$createAt',
+            'videoTitulo': '$videosDetalles.titulo'
+          }
+        }, 
+        { "$group": {
+              "_id": "$videoTitulo",
+              'cantidad': { $sum: 1 },
+              "fechas": { "$push": "$fechaPrestamo" },
+          }
+        },
+        { $sort : { 'cantidad' : -1 } },
+      ]);
+
+      mensajeExito(res, 'ranking recuperado correctamente', 200, respuesta);
+    } catch (error) {
+      mensajeError(res, error, 400)
+    }
+  },
   mostrar: async (req, res) => {
     try {
       const { idPrestamo } = req.params;

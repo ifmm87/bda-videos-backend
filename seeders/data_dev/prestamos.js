@@ -16,8 +16,8 @@ exports.prestamos = {
   },
   item2: {
     _id: id("000000000000000000000002"),
-    cliente: id("000000000000000000000002"),
-    videos: [id("569190cb24de1e0ce2dfcd51"), id("569190cb24de1e0ce2dfcd50")],
+    cliente: id("000000000000000000000001"),
+    videos: [id("569190ca24de1e0ce2dfcd4f"), id("569190cb24de1e0ce2dfcd50")],
     fechaDevolucion:  new Date("2021-04-05"),
     diasPrestamo: 1,
     descuento: 4,
