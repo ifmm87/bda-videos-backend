@@ -3,12 +3,7 @@ const { listar, crear, mostrar, actualizar } = require('../utils/dao');
 const { mensajeError, mensajeExito } = require('../utils/handleResponse');
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
-const { validaObligatorio,
-  validaEntrada,
-  armaRecuperar,
-  armaContrastar,
-  resolverRespuestaRecuperar,
-  resolverRespuestaContrastacion } = require('../middleware/validador');
+
 const Debug = require('debug');
 const debug = new Debug('controller-clientes:');
 module.exports = {
@@ -121,12 +116,29 @@ module.exports = {
   bloquear: async (req, res) => {
     try {
       const { idCliente } = req.params;
-      const cliente = req.body;
-      const respuesta = await actualizar(Clientes.db, idCliente, cliente)
-      mensajeExito(res, 'El cliente fue bloquedo correctamente', 200, respuesta);
+      const { motivoBloqueo } = req.body;
+      const respuesta = await Clientes.db.update({_id: idCliente}, {
+        bloqueado: true,
+        motivoBloqueo: motivoBloqueo
+      });
+      mensajeExito(res, 'El cliente fue bloqueado correctamente', 200, respuesta);
     } catch (error) {
       debug(error);
-      mensajeError(res, error.message, 400);
+      mensajeError(res, error.message);
+    }
+  },
+  desbloquear: async (req, res) => {
+    try {
+      const { idCliente } = req.params;
+      const { motivoBloqueo } = req.body;
+      const respuesta = await Clientes.db.update({_id: idCliente}, {
+        bloqueado: false,
+        motivoBloqueo: ''
+      });
+      mensajeExito(res, 'El cliente fue bloqueado correctamente', 200, respuesta);
+    } catch (error) {
+      debug(error);
+      mensajeError(res, error.message);
     }
   },
   eliminar: async (req, res) => {

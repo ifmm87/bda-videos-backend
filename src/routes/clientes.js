@@ -6,5 +6,7 @@ app.get('/:idCliente', Clientes.mostrar);
 app.get('/:idCliente/historial', Clientes.historial);
 app.post('/', Clientes.crear);
 app.put('/:idCliente', Clientes.modificar);
+app.patch('/:idCliente/bloquear', Clientes.bloquear);
+app.patch('/:idCliente/desbloquear', Clientes.desbloquear);
 app.delete('/:idCliente', Clientes.eliminar);
 module.exports = app;

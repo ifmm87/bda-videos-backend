@@ -1,8 +1,10 @@
-const { Videos } = require('../models');
+const { Videos, Bajas } = require('../models');
 const { listar, crear, mostrar, actualizar } = require('../utils/dao');
 const { mensajeError, mensajeExito } = require('../utils/handleResponse');
 const Debug = require('debug');
 const debug = new Debug('videos_controller');
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 module.exports = {
   listar: async (req, res) => {
     try {
@@ -32,6 +34,41 @@ module.exports = {
       const respuesta = await crear(Videos.db, video);
       if (respuesta) {
         mensajeExito(res, 'El video fue creado correctamente', 200, respuesta);
+      } else {
+        throw new Error('No se pudo guardar el video');
+      }
+    } catch (error) {
+      debug(error);
+      mensajeError(res, error.message, 400);
+    }
+  },
+  bajaCopia: async (req, res) => {
+    try {
+      const idVideo = req.params;
+      const { motivo } = req.body;
+      const respuesta = await Videos.db.update({_id: idVideo}, { $set: { copias: copias - 1 } });
+      const respuestaBaja = await Bajas.db.create({
+        video: idVideo,
+        motivo
+      });
+      if (respuesta) {
+        mensajeExito(res, 'la Copia fue dada de baja correctamente', 200, respuesta);
+      } else {
+        throw new Error('No se pudo guardar el video');
+      }
+    } catch (error) {
+      debug(error);
+      mensajeError(res, error.message, 400);
+    }
+  },
+  altaCopia: async (req, res) => {
+    try {
+      const  { idVideo } = req.params;
+      console.log(idVideo);
+      const respuesta = await Videos.db.update({_id: ObjectId(idVideo)}, { $set: { copias: parseInt('$copias') + 1 } });
+
+      if (respuesta) {
+        mensajeExito(res, ' Copia fue creada correctamente.', 200, respuesta);
       } else {
         throw new Error('No se pudo guardar el video');
       }

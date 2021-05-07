@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express.Router();
 const { Videos } = require('../controllers');
-const { validaConfiguracion, validaResolver } = require('../middleware/configuracion');
 app.get('/', Videos.listar);
 app.get('/:idVideo', Videos.mostrar);
 app.post('/', Videos.crear);
 app.put('/:idVideo', Videos.modificar);
+app.patch('/:idVideo/baja', Videos.bajaCopia);
+app.patch('/:idVideo/alta', Videos.altaCopia);
 app.delete('/', Videos.eliminar);
 module.exports = app;

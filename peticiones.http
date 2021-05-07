@@ -1,0 +1,34 @@
+
+# cliente
+# bloquear cliente
+PATCH http://localhost:1987/clientes/000000000000000000000001/bloquear
+cache-control: no-cache
+Content-Type: application/json
+
+{
+  "motivoBloqueo": "bloqueado por moroso"
+}
+###
+
+
+# videos
+# 
+PATCH http://localhost:1987/videos/569190ca24de1e0ce2dfcd4f/alta
+cache-control: no-cache
+Content-Type: application/json
+
+{
+  "motivoBloqueo": "bloqueado por moroso"
+}
+###
+
+# videos
+#
+PATCH http://localhost:1987/videos/569190ca24de1e0ce2dfcd4f/alta
+cache-control: no-cache
+Content-Type: application/json
+
+{
+  "motivoBloqueo": "bloqueado por moroso"
+}
+###
