@@ -57,3 +57,69 @@ sudo systemctl start mongodb.service
 sudo systemctl status mongodb.service
 ```
 ## c) Configuración Replica Set
+### Configuracion de los nodos
+
+#### Registro de hosts y nombre de la replica en Primary y ambos Secondaries
+Registrar los nombres e ips del cluster en en /etc/hosts de cada nodo.
+podemos ejecutar las siguientes sentencias con el usuario root  como sigue:
+
+Primary
+
+Hosts
+```
+echo '127.0.0.1     primary'  >> /etc/hosts 
+echo '192.168.100.5     secondary1'  >> /etc/hosts 
+echo '192.168.100.66     secondary2'  >> /etc/hosts 
+```
+Secondary 1
+
+Hosts
+```
+echo '127.0.0.1     secondary1'  >> /etc/hosts 
+echo '192.168.100.23     primary'  >> /etc/hosts 
+echo '192.168.100.66     secondary2'  >> /etc/hosts 
+```
+
+Secondary 2
+
+Hosts
+```
+echo '127.0.0.1     secondary2'  >> /etc/hosts 
+echo '192.168.100.23     primary'  >> /etc/hosts 
+echo '192.168.100.66     secondary1'  >> /etc/hosts 
+```
+Editar /etc/mongodb.conf (como root) en todos los nodos incluido el Primary para que quede de la siguiente manera:
+```
+net: 
+port: 2717
+bindIp: 0.0.0.0
+....
+....
+replication:
+replSetName: "replica0"
+
+```
+#### Inicializacion del cluster
+Primary
+
+En la terminal ejecutar mongo y dentro ejecutar los siguientes comandos:
+```
+rs.initiate();
+rs.add('secondary1:27017');
+rs.add('secondary2:27017');
+```
+Secondary (en ambos)
+
+Para habilitar consultas hacia el primario ejecutar mongo y dentro ejecutar los siguientes comandos:
+```
+rs.secondaryOk();
+```
+
+### Verificacion del cluster
+
+En el nodo Primary ejecutar la siguiente sentencia
+```
+ rs.status()
+```
+
+

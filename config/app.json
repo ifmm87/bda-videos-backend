@@ -1,5 +1,5 @@
 {
-  "mongoUrl": "mongodb://localhost/movies",
-  "mongoUrlDev": "mongodb://localhost/movies",
-  "mongoUrlTest": "mongodb://localhost/movies"
+  "mongoUrl": "mongodb://primary,secondary1,secondary2/movies",
+  "mongoUrlDev": "mongodb://primary,secondary1,secondary2/movies",
+  "mongoUrlTest": "mongodb://primary,secondary1,secondary2/movies"
 }
