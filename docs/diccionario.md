@@ -2,7 +2,7 @@
 # Base de datos Videos
 
 ### Diagrama de documentos
-![Casos de Uso](docs/diagram.jpg)
+![Diagrama](diagram.jpg)
 
 ### Collection bajas 
 | Idx | Nombre | Data Type | Descripción |
