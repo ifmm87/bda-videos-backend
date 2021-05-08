@@ -90,5 +90,7 @@ La aplicación estara disponible en el puerto 1987
 
  > [http://localhost:1987](http://localhost:1987)
 
+La documentación de los servicios del API REST  se encuentrán en:
+ > [http://localhost:1987/api-docs](http://localhost:1987/api-docs)
 
 

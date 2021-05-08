@@ -13,7 +13,7 @@ Este proyecto en una aplicacion de tipo API REST, el stack de tecnologías usado
   - MongoDB  
 
 La documentación de los servicios del API REST  se encuentrán en:
- > [http://localhost:1987](http://localhost:1987)
+ > [http://localhost:1987/api-docs](http://localhost:1987/api-docs)
 
 Describen la especificación de los servicios web, también como consumirlos.
 Este conjunto de servicios satisfacen las reglas de negocio descritas a continuación:
@@ -74,21 +74,174 @@ Para una correcta instalación ver el siguiente enlace:
 > [INSTALL.md](INSTALL.md)
 # 3. Configuración en alta disponibilidad de la base de datos.
 > [CONFIG-HA.md](CONFIG-HA.md)
+
 # 4. Entregables
 
-  a) Diccionario de datos
-> [INSTALL-HA.md](CONFIG-HA.md)
+  #### a) Diccionario de datos
+> [DICCIONARIO](docs/diccionario.md)
 
-  b y c) Script de creación y script de llenado de la base de datos.
-  Solo si se quiere hacer una instalación de la base de datos y no asi de la aplicación
+  **Solo** si se quiere hacer una instalación de la base de datos y no asi de la aplicación
   ya que la misma crea  y realiza el poblado de la base datos con data de prueba como esta descrito en el punto 2.
 
-> [INSTALL-HA.md](CONFIG-HA.md)
+  #### b) Script de creación de la base de datos.
+  Ingresar a  mongoDB:
+  ```sh
+  mongo
+  ```
+  Crear la base de datos 
+  ```
+  use videos_standalone
+  ```
+  Verificar que estemos posicionado en la base de datos
+  ```
+  db
+  ```
+  Mongo no visualiza el nombre de la nueva base de datos al menos que no se tenga una colección creada.
+  ```
+  db.test.insert({foo: 'foo'});
+  ```
 
-  d) Consultas a la base de datos  
+  #### c) Script de llenado de la base de datos. 
+  ```
+  mongoimport --db videos_standalone --collection tarifas --drop --file bk/tarifas.json
+  mongoimport --db videos_standalone --collection tarifas --drop --file bk/descuentos.json
+  mongoimport --db videos_standalone --collection tarifas --drop --file bk/videos.json
+  mongoimport --db videos_standalone --collection tarifas --drop --file bk/clientes.json
+  mongoimport --db videos_standalone --collection tarifas --drop --file bk/prestamos.json
 
-  Solo si se tiene instalado la base de datos y no asi la aplicación, por que cada consulta 
-  esta disponible en su endpoint respectivo.
+  ```
 
+  #### d) Consultas a la base de datos
+
+  Si se ha realizado una restauración solamente de la base de datos podemos ejecutar las siguientes consultas solicitadas
+  directamente en mongoDB, caso contrario usar los servicios descritos en el **APIDOC**
+
+  Detalle de un prestamo
+  ```javascript
+      db.prestamos.aggregate([ 
+        { '$match': { _id: ObjectId('000000000000000000000020') } }, 
+        { '$lookup': 
+          { from: 'clientes', localField: 'cliente', 
+            foreignField: '_id', as: 'cliente' } },
+        { '$unwind': '$cliente' }, 
+        { '$project': { _id: 1, fechaDevolucion: 1, devuelto: 1, createAt: 1,
+          diasPrestamo: 1, importeTotal: 1, descuento: 1,
+          cliente: '$cliente.nombreCompleto', celular: '$cliente.celular',
+          fechaNacimiento: '$cliente.fechaNacimiento',
+          videos: 1 }
+        },
+        { '$unwind': '$videos' },
+        { '$lookup': 
+          { from: 'videos', localField: 'videos', foreignField: '_id', 
+            as: 'videosDetalles' } }, 
+        { '$unwind': '$videosDetalles' }, 
+        { '$project': { _id: '$_id', fechaDevolucion: 1, 
+          devuelto: 1, createAt: 1, cliente: 1, celular: 1, 
+          diasPrestamo: 1, importeTotal: 1, descuento: 1, fechaNacimiento: 1,
+          'video.titulo': '$videosDetalles.titulo', 
+          'video.costoUnitario': '$videosDetalles.costoUnitario', 
+          'video.reparto': '$videosDetalles.reparto', 
+          'video.director': '$videosDetalles.director' } },
+        { '$group': { _id: '$_id', 
+          cliente: { '$first': '$cliente' }, 
+          devuelto: { '$first': '$devuelto' },
+          fechaNacimiento: { '$first': '$fechaNacimiento' }, 
+          fechaDevolucion: { '$first': '$fechaDevolucion' }, 
+          celular: { '$first': '$celular' },
+          diasPrestamo: { '$first': '$diasPrestamo' }, 
+          importeTotal: { '$first': '$importeTotal' }, 
+          descuento: { '$first': '$descuento' },
+          fechaPrestamo: { '$first': '$createAt' },
+          videos: { '$push': '$video' } } 
+        }
+      ]).pretty()
+
+  ```
+  Historial de un cliente
+  ```javascript
+
+      db.prestamos.aggregate([
+          {
+            $match: { cliente: ObjectId('000000000000000000000001') } 
+          },
+          {
+            $lookup: {
+                      from: 'clientes',
+                      localField: 'cliente',
+                      foreignField: '_id',
+                      as: 'cliente'
+                    }
+          },
+          {
+            $unwind: '$cliente'
+          },
+          {
+            $project: {
+              _id: 1,
+              cliente: '$cliente.nombreCompleto',
+              fechaPrestamo: '$createAt',
+              videos: 1
+            }
+          },
+          {
+            $unwind: '$videos'
+          },
+          {
+            $lookup: {
+                      from: 'videos',
+                      localField: 'videos',
+                      foreignField: '_id',
+                      as: 'videosDetalles'
+            }
+          },
+          { $unwind: '$videosDetalles'},
+          { $project: {
+              '_id': '$_id',
+              'clente': '$cliente',
+              'fechaPrestamo': '$fechaPrestamo',
+              'videoTitulo': '$videosDetalles.titulo'
+            }
+          }, 
+          { $sort : { fechaPrestamo : -1 } },
+          { "$group": {
+                "_id": "$videoTitulo",
+                count: { $sum: 1 },
+                "fechas": { "$push": "$fechaPrestamo" },
+            }
+          }
+        ]).pretty();
+  ```
+  Ranking de peliculas 
+  ```javascript
+
+      db.prestamos.aggregate([
+        {
+          $unwind: '$videos'
+        },
+        {
+          $lookup: {
+                    from: 'videos',
+                    localField: 'videos',
+                    foreignField: '_id',
+                    as: 'videosDetalles'
+          }
+        },
+        { $unwind: '$videosDetalles'},
+        { $project: {
+            '_id': '$_id',
+            'fechaPrestamo': '$createAt',
+            'videoTitulo': '$videosDetalles.titulo'
+          }
+        }, 
+        { "$group": {
+              "_id": "$videoTitulo",
+              'cantidad': { $sum: 1 },
+              "fechas": { "$push": "$fechaPrestamo" },
+          }
+        },
+        { $sort : { 'cantidad' : -1 } },
+      ]).pretty();
+
+  ```
 
 

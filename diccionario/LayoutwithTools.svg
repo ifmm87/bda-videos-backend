@@ -1,0 +1,470 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1264' height='974' viewBox='0 0 1264 974' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','scene'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#c5c5c5; font-family: System, 'Trebuchet MS', Dialog; font-size:14.083333015441895px; }
+  a text:hover        { fill:#ffffff; text-shadow: 0px 0px 6px #d0ce00; font-size:13px; }
+  text.highlight      { fill:#e79a33; text-shadow: 0px 0px 4px #674210; font-size:13px; }
+  text.white          { fill:#c5c5c5; }
+  text.colType        { fill:#737373; }
+  text.relName        { fill:#85909a; }
+  text.legendTitle    { fill:#58c101; font-weight:bold; }
+  text.legendSubTitle { fill:#b0b0b0; font-size:11px; }
+  path                { stroke:#6f8189; stroke-width:1.15; fill:none;}
+  path.virtual        { stroke:#22834e; }
+  path.logo           { fill:#b5c8a9;fill-opacity:1;stroke-width:0.3;stroke:#222222; }
+  path.dotted         { stroke-dasharray:4,2; }
+  path.scene          { stroke-width:10; opacity:0;}
+  path.highlight      { stroke-width:3; stroke:#6db3d6; opacity:0.6;}
+  rect.entity         { fill:#252627; stroke:#303132; stroke-width:1;shape-rendering:crispEdges; filter:url(#shadow); }
+  line.delim          { stroke-width:1; shape-rendering:crispEdges; }
+  text.callout        { fill:#dfe0c5; font-family: System, 'Trebuchet MS', Dialog; font-size:15.166666984558105px; }
+  rect.callout        { fill:url(#calloutGradient); stroke:#3f3f3f; stroke-width:0.5; }
+  rect.grp            { stroke:#5a5a5a; stroke-width:1.7; opacity:0.35; }
+  path.st0            { fill:#2a2b2c;stroke-width:0.6;stroke:#3a3c3f; }
+</style>
+<defs>
+    <pattern id="layoutBgA" width="60" height="34.64" patternUnits="userSpaceOnUse">
+        <path class='st0' d='M 0 17.32 L 10 0 L 30 0 L 40 17.326 L 30 34.64 L 10 34.64 Z' />
+        <path class='st0' d='M 40 17.32 L 60 17.32 Z' />
+    </pattern>
+    <pattern id='layoutBgB'  width='10' height='20' x='0' y='0' patternUnits="userSpaceOnUse">
+        <line x1='-2' y1='1' x2='7' y2='10' stroke='#323232' stroke-width='.5'/>
+        <line x1='-2' y1='6' x2='7' y2='15' stroke='#323232' stroke-width='.5'/>
+        <line x1='-2' y1='-4' x2='7' y2='5' stroke='#323232' stroke-width='.5'/>
+    </pattern>
+    <pattern id='layoutBgTr'  width='300' height='300' x='0' y='0' patternUnits="userSpaceOnUse">
+        <path class='st0' d='m 62.011835,91.267143 c 3.536475,3.175214 2.262669,8.705999 -1.637711,11.015197 -3.594697,5.8423 -6.34682,-2.892623 -9.715478,-4.653898 -5.609222,-2.838926 2.050802,-6.680123 4.77004,-8.319046 2.334696,-0.724067 4.935143,0.312302 6.583149,1.957747 z m -2.720492,2.538595 c -2.698397,-3.517732 -9.282815,1.269287 -3.69635,3.568637 2.765331,5.605665 7.052809,-0.56184 3.69635,-3.568637 z' />
+        <path class='st0' d='m 72.25864,84.624638 c 4.108046,3.143003 -0.737059,6.895259 -1.994918,8.323564 -3.586718,5.561143 -6.495079,-4.197379 -10.07759,-5.582178 -4.443422,-1.088878 1.349298,-7.249213 2.503526,-2.503449 2.464639,4.517161 2.304019,-3.70697 6.291113,-1.995914 1.280083,0.137865 2.410691,0.864819 3.277869,1.757977 z m -2.646109,2.323242 c -4.797162,-3.078383 -2.810517,6.305507 0.515161,1.990646 0.296432,-0.688582 0.01209,-1.493412 -0.515161,-1.990646 z' />
+        <path class='st0' d='m 78.230641,79.436735 c 4.142121,3.027466 -2.020102,10.435276 -3.450543,5.477315 3.306312,-5.248112 -9.186019,-2.220094 -5.805994,-8.77679 -0.544141,-3.93011 6.797826,-2.102227 3.386015,0.245477 -0.181085,2.915838 4.637371,1.019311 5.870522,3.053982 z' />
+        <path class='st0' d='m 82.744502,72.597397 c -4.901605,1.926521 1.146497,6.285555 2.559694,2.225783 6.21817,3.539297 -6.640186,8.416664 -7.590325,1.997457 -2.24365,-2.914883 4.026676,-10.148618 5.030631,-4.22324 z' />
+        <path class='st0' d='m 90.727458,64.259158 c 1.583987,1.690029 3.321317,3.2696 4.81267,5.026353 -2.535706,6.849794 -6.445583,-5.918773 -8.388458,-0.167017 0.782768,2.03426 5.877405,3.752079 2.670979,5.711199 -3.315119,1.519161 -5.782422,-5.157931 -8.858893,-6.780537 -4.229842,-1.139816 1.510134,-7.074128 2.586227,-2.385939 3.141198,5.495193 1.840537,-5.598295 7.177489,-1.404062 z' />
+        <path class='st0' d='m 99.622027,58.374253 c 1.493293,1.9548 -6.281936,7.024659 -0.885258,4.740447 0.386238,-4.434477 6.131941,-1.133173 2.175851,1.618005 -4.421491,6.12739 -13.666659,-3.151506 -7.058299,-7.136537 1.785129,-1.119329 4.348209,-0.743179 5.767706,0.778085 z m -2.900824,1.89746 c -3.608188,-2.208543 -2.280489,5.00803 -0.12563,0.329531 z' />
+        <path class='st0' d='m 115.18023,50.570441 c -1.61703,5.201678 -4.6204,-0.364502 -7.01598,-1.749619 -4.40977,2.122562 4.89641,4.913939 1.89606,7.018157 -2.48061,3.877635 -4.11404,-4.060614 -7.01192,-2.6391 -1.76318,3.107252 7.28394,6.252304 0.87346,7.876177 -1.74515,-2.956649 -9.055498,-5.610518 -3.950378,-8.66062 1.696478,1.897023 1.770418,-5.43503 5.347308,-3.072411 -0.44014,-5.474701 6.11995,-4.950882 7.7846,-0.815355 0.69076,0.682329 1.39587,1.351469 2.07685,2.042771 z' />
+        <path class='st0' d='m 120.54891,39.417125 c 2.50681,1.334124 4.80466,4.941837 0.75044,5.297362 -0.46414,1.89865 -5.25369,5.602652 -8.01742,1.815475 -3.87345,-2.809139 -0.0676,-7.603869 2.3036,-8.133924 1.6795,-3.853018 3.16703,-1.199465 4.96338,1.021087 z m -2.2464,2.175828 c -4.8049,-2.992167 -3.08987,6.380358 0.42374,2.036159 0.33052,-0.677508 0.12099,-1.525836 -0.42374,-2.036159 z' />
+        <path class='st0' d='m 128.50836,24.06821 c -5.10403,3.035506 3.20535,6.383175 5.05938,9.450276 -0.91853,2.95886 -4.06493,3.650723 -5.34691,0.265618 -2.25715,-2.089033 -4.65672,-6.948595 -7.07024,-2.584686 -4.71758,-3.764394 3.81217,-5.812054 5.12382,-9.226328 0.75738,0.677487 1.38637,1.498638 2.23389,2.095175 z' />
+        <path class='st0' d='m 137.14366,22.299812 c -3.09615,2.259885 0.71537,4.412454 1.99042,6.435866 -3.08975,5.080354 -5.91384,-2.98648 -8.92144,-4.094939 1.44369,-3.219573 3.3497,-1.335928 4.27156,-4.41058 0.97822,-0.894325 1.75044,1.871047 2.65946,2.069653 z' />
+        <path class='st0' d='m 136.85093,14.890174 c 2.31562,5.283511 -7.17975,1.771993 -1.29675,-0.475107 l 0.7108,0.08973 z m 4.867,5.317354 c 2.56912,1.439678 4.26517,4.725219 0.30678,5.233637 -1.56592,-3.098864 -9.51683,-5.749448 -3.64502,-8.633714 1.17746,0.325095 2.15375,2.591149 3.33824,3.400077 z' />
+        <path class='st0' d='m 149.95578,11.976423 c 2.50679,1.334142 4.80455,4.94192 0.75041,5.297394 -0.4641,1.898604 -5.25368,5.602645 -8.0174,1.81545 -3.87347,-2.80918 -0.0676,-7.603844 2.30366,-8.133968 1.67949,-3.8530525 3.16695,-1.1993573 4.96333,1.021124 z m -2.24641,2.175828 c -4.80489,-2.992177 -3.08986,6.380343 0.42374,2.036167 0.33055,-0.677518 0.121,-1.52585 -0.42374,-2.036167 z' />
+        <path class='st0' d='m 153.26135,7.538431 c 2.60497,1.5799548 6.03999,5.944272 1.08117,6.050232 -2.53319,-3.231828 -7.20316,-6.4304525 -8.84748,-9.4582682 1.89121,-2.8664883 3.78452,-2.247699 5.38514,0.8929426 0.78017,0.8503859 1.57195,1.6911437 2.38118,2.5150667 z' />
+    </pattern>
+    <linearGradient id='groupUnderTitleLine' x1='0%' y1='0%' x2='100%' y2='0%' >
+        <stop offset='0%' stop-color='#676767' stop-opacity='0.7'/>
+        <stop offset='100%' stop-color='#676767' stop-opacity='0' />
+    </linearGradient>
+    <radialGradient id='calloutGradient' cx='25%' cy='20%' r='80%' fx='10%' fy='10%'>
+        <stop offset='0%' stop-color='#64450d' />
+        <stop offset='100%' stop-color='#473619' />
+    </radialGradient>
+    <filter id='shadow' width='120%' height='120%'>
+        <feOffset result='offOut' in='SourceGraphic' dx='0' dy='0' />
+        <feColorMatrix result='matrixOut' in='offOut'
+                       values='0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.1 0 0 0 0 0 0.2 0' />
+        <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='4' />
+        <feBlend in='SourceGraphic' in2='blurOut' />
+    </filter>
+    <filter id='fkShadow' height='130%'>
+        <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+        <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+        <feMerge>
+            <feMergeNode/> <!-- this contains the offset blurred image -->
+            <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+        </feMerge>
+    </filter>
+    <radialGradient id='legendGradient' cx='5%' cy='5%' r='100%' >
+        <stop offset='0%' stop-color='#42505b' stop-opacity='1'/>
+        <stop offset='100%' stop-color='#33393d' stop-opacity='1' />
+    </radialGradient>
+    <symbol id='calloutArrowDown' >
+        <path d='M 0,0 L 8,12 L 16,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+        <path d='M 0,0 L 8,12 L 16,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+    </symbol>
+    <symbol id='calloutArrowUp' >
+        <path d='M 0,16 L 8,4 L 16,16 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+        <path d='M 0,16 L 8,4 L 16,16' style='stroke:#bebdbd; stroke-width:0.5;' />
+    </symbol>
+    <symbol id='pk' >
+        <g transform='scale(0.99)'>
+            <path style='fill:#fffa7d;stroke:#765f03;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;'
+                  d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+            <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+                  style='fill:#ffe5a5;fill-opacity:1;stroke:#854e31;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+        </g>
+    </symbol>
+    <symbol id='idx1' >
+        <g transform='scale(0.99)'>
+            <rect width='4' height='4' x='7' y='1' style='fill:#ffff3f;stroke:#e3a23a;stroke-width:0.6;' ry='0.83'/>
+            <rect width='4' height='4' x='1' y='7' style='fill:#ffff3f;stroke:#e3a23a;stroke-width:0.6;' ry='0.832'/>
+            <rect width='4' height='4' x='7' y='7' style='fill:#ffff3f;stroke:#e3a23a;stroke-width:0.6;' ry='0.832'/>
+        </g>
+    </symbol>
+    <symbol id='idx2' >
+        <g transform='scale(0.99)'>
+            <rect width='4' height='3' x='6' y='1' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.83'/>
+            <rect width='7' height='3' x='3' y='6' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.832'/>
+        </g>
+    </symbol>
+    <symbol id='unq' >
+        <g transform='scale(0.99)'>
+            <rect style='fill:#fbea8e;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+                  width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+            <path style='fill:#323232;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+                  d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+                  transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+            <text x='5.8' y='7.4' style='font-size:7px;fill:#8a8a8a;'>1</text>
+        </g>
+    </symbol>
+    <symbol id='idx' >
+        <g transform='scale(0.99)'>
+            <rect style='fill:#fbea8e;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+                  width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+            <path style='fill:#323232;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+                  d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+                  transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+        </g>
+    </symbol>
+    <symbol id='fk' >
+        <g transform='scale(0.87)'>
+            <path style='fill:#3791c5;stroke:#3791c5;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+                  d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+        </g>
+    </symbol>
+    <symbol id='ref' >
+        <g transform='scale(0.87)'>
+            <path style='fill:#f3e1b7;stroke:#f3e1b7;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+                  d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+        </g>
+    </symbol>
+    <symbol id='flag0' >
+        <g transform='scale(0.92)'>
+            <path style='fill:#b7d0f6;stroke:#404040;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+                  d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+        </g>
+    </symbol>
+    <symbol id='flag1' >
+        <g transform='scale(0.92)'>
+            <path style='fill:#f4a393;stroke:#404040;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+                  d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+        </g>
+    </symbol>
+    <symbol id='flag2' >
+        <g transform='scale(0.92)'>
+            <path style='fill:#77ec8b;stroke:#404040;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+                  d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+        </g>
+    </symbol>
+    <symbol id='nn' >
+        <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+              d='M 0,0 3,3 M 0,3 3,0 z'/>
+    </symbol>
+    <symbol id='view' >
+        <g transform='scale(0.99)'>
+            <line x1='12' y1='6' x2='19' y2='0' stroke='gray' stroke-width='0.5' />
+            <line x1='0' y1='6' x2='7' y2='0' stroke='gray' stroke-width='0.5' />
+            <circle cx='3' cy='6' r='3' fill='#f9ebbc' stroke='gray' stroke-width='0.5'/>
+            <circle cx='10' cy='6' r='3' fill='#f9ebbc' stroke='gray' stroke-width='0.5'/>
+        </g>
+    </symbol>
+</defs>
+
+<defs>  <marker id='arrow01' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+  </marker>
+  <marker id='arrow1' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+  </marker>
+  <marker id='foot01' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 1.60,4.00 L 3.20,4.00 L 4.80,4.00 L 6.40,4.00 z' />
+  </marker>
+  <marker id='foot0p' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 1.60,4.00 L 3.20,4.00 L 4.80,4.00 L 6.40,4.00 z' />
+    <path d='M 0.00,0.00 L 8.00,4.00 L 0.00,8.00' />
+  </marker>
+  <marker id='foot1' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+  </marker>
+  <marker id='foot1p' viewBox='0 0 16.00 8.00' refX='8.00' refY='4.00' markerWidth='16.00' markerHeight='8.00' orient='auto'>
+    <path d='M 0.00,4.00 L 16.00,4.00 z' />
+    <path d='M 0.00,0.00 L 8.00,4.00 L 0.00,8.00' />
+  </marker>
+  <linearGradient id='tbg_C7F4BE' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#2C7F1C' /> 
+     <stop offset='40%' stop-color='#28621D' /> 
+     <stop offset='100%' stop-color='#2A5023' /> 
+  </linearGradient>
+  <linearGradient id='tbg_F4DDBE' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#7F541C' /> 
+     <stop offset='40%' stop-color='#62441D' /> 
+     <stop offset='100%' stop-color='#503C23' /> 
+  </linearGradient>
+  <linearGradient id='tbg_BEBEF4' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#1C1C7F' /> 
+     <stop offset='40%' stop-color='#1D1D62' /> 
+     <stop offset='100%' stop-color='#232350' /> 
+  </linearGradient>
+  <linearGradient id='tbg_D1BEF4' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#3E1C7F' /> 
+     <stop offset='40%' stop-color='#351D62' /> 
+     <stop offset='100%' stop-color='#322350' /> 
+  </linearGradient>
+  <linearGradient id='tbg_BED3F4' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#1C417F' /> 
+     <stop offset='40%' stop-color='#1D3762' /> 
+     <stop offset='100%' stop-color='#233450' /> 
+  </linearGradient>
+</defs>
+
+<!-- == Desktop == -->
+<rect x='1' y='1' width='1262' height='972' rx='8' ry='8' style='fill:url(#layoutBgA); stroke:#6a8093; stroke-width:0.5;' />
+<rect x='1' y='1' width='1262' height='972' rx='8' ry='8' style='fill:url(#layoutBgTr);' />
+
+<!-- == Legend == -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='230' height='56' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
+  <text x='20' y='25' class='legendTitle' >Base de datos Videos</text> 
+  <a xlink:href='https://dbschema.com'><text x='20' y='39' class='legendSubTitle'><tspan>(c) DbSchema</tspan></text></a> 
+  <text x='20' y='53' class='legendSubTitle'><tspan>Hover columns to read the comments.</tspan></text> 
+</g>
+
+<g transform='translate(0,110)'>
+<!-- == Group 'clientes' == -->
+<rect class='grp' style='fill:#21324F;stroke:#3D4552' x='32' y='45' width='448' height='338' />
+<text x='44' y='61'>clientes</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='44' y='65' width='424' height='2' />
+
+<!-- == Group 'bajas' == -->
+<rect class='grp' style='fill:#284F21;stroke:#40523D' x='1056' y='45' width='176' height='210' />
+<text x='1068' y='61'>bajas</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='1068' y='65' width='152' height='2' />
+
+<!-- == Group 'descuentos' == -->
+<rect class='grp' style='fill:#4F3B21;stroke:#52483D' x='656' y='541' width='208' height='162' />
+<text x='668' y='557'>descuentos</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='668' y='561' width='184' height='2' />
+
+<!-- == Group 'prestamos' == -->
+<rect class='grp' style='fill:#31214F;stroke:#443D52' x='352' y='493' width='224' height='306' />
+<text x='364' y='509'>prestamos</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='364' y='513' width='200' height='2' />
+
+<!-- == Group 'videos' == -->
+<rect class='grp' style='fill:#21214F;stroke:#3D3D52' x='512' y='45' width='480' height='338' />
+<text x='524' y='61'>videos</text>
+<rect style='fill:url(#groupUnderTitleLine); stroke-width:2;' x='524' y='65' width='456' height='2' />
+
+<!-- == Fk 'bajas_Virtual Relation' == -->
+<path id='bajas_Virtual Relation'  onmouseover="hghl(['bajas_Virtual Relation','movies.bajas.video','movies.videos._id'])" onmouseout="uhghl(['bajas_Virtual Relation','movies.bajas.video','movies.videos._id'])" transform='translate(8,0)' class='scene' d='M 1056,96L 736,96' >
+	<title>Fk Virtual Relation
+bajas ref videos ( video -&gt; _id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'  class='virtual'  d='M 1056,96L 736,96' ><title>Fk Virtual Relation
+bajas ref videos ( video -&gt; _id )</title></path>
+<text x='958' y='91' transform='rotate(0 958,91)' class='relName'>Virtual Relation</text>
+<!-- == Fk 'nominaciones_JSon' == -->
+<path id='nominaciones_JSon'  onmouseover="hghl(['nominaciones_JSon','movies.videos.nominaciones'])" onmouseout="uhghl(['nominaciones_JSon','movies.videos.nominaciones'])" transform='translate(8,0)' class='scene' d='M 768,208L 736,208' >
+	<title>Fk JSon
+nominaciones ref videos (  )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot01)' marker-end='url(#arrow01)'  class='dotted '  d='M 768,208L 736,208' ><title>Fk JSon
+nominaciones ref videos (  )</title></path>
+<text x='755' y='203' transform='rotate(0 755,203)' class='relName'>Obj</text>
+<!-- == Fk 'prestamos_Virtual Relation' == -->
+<path id='prestamos_Virtual Relation'  onmouseover="hghl(['prestamos_Virtual Relation','movies.prestamos.cliente','movies.descuentos._id'])" onmouseout="uhghl(['prestamos_Virtual Relation','movies.prestamos.cliente','movies.descuentos._id'])" transform='translate(8,0)' class='scene' d='M 560,576L 656,576' >
+	<title>Fk Virtual Relation
+prestamos ref descuentos ( cliente -&gt; _id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'  class='virtual'  d='M 560,576L 656,576' ><title>Fk Virtual Relation
+prestamos ref descuentos ( cliente -&gt; _id )</title></path>
+<text x='570' y='571' transform='rotate(0 570,571)' class='relName'>Virtual Relation</text>
+<!-- == Fk 'prestamos_Fk_prestamos_clientes' == -->
+<path id='prestamos_Fk_prestamos_clientes'  onmouseover="hghl(['prestamos_Fk_prestamos_clientes','movies.prestamos.cliente','movies.clientes._id'])" onmouseout="uhghl(['prestamos_Fk_prestamos_clientes','movies.prestamos.cliente','movies.clientes._id'])" transform='translate(8,0)' class='scene' d='M 352,528L 248,528Q 240,528 240,520L 240,368' >
+	<title>Fk Fk_prestamos_clientes
+prestamos ref clientes ( cliente -&gt; _id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'  class='virtual'  d='M 352,528L 248,528Q 240,528 240,520L 240,368' ><title>Fk Fk_prestamos_clientes
+prestamos ref clientes ( cliente -&gt; _id )</title></path>
+<text x='203' y='523' transform='rotate(0 203,523)' class='relName'>Fk_prestamos_clientes</text>
+<!-- == Fk 'prestamos_Fk_prestamos_videos' == -->
+<path id='prestamos_Fk_prestamos_videos'  onmouseover="hghl(['prestamos_Fk_prestamos_videos','movies.prestamos.videos','movies.videos._id'])" onmouseout="uhghl(['prestamos_Fk_prestamos_videos','movies.prestamos.videos','movies.videos._id'])" transform='translate(8,0)' class='scene' d='M 544,512L 544,368' >
+	<title>Fk Fk_prestamos_videos
+prestamos ref videos ( videos -&gt; _id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#foot1p)' marker-end='url(#arrow1)'  class='virtual'  d='M 544,512L 544,368' ><title>Fk Fk_prestamos_videos
+prestamos ref videos ( videos -&gt; _id )</title></path>
+<text x='547' y='510' transform='rotate(270 547,510)' class='relName'>Fk_prestamos_videos</text>
+<!-- == Table 'bajas' == -->
+<rect class='entity' style='stroke:none;' x='1072' y='72' width='144' height='160' rx='8' ry='8' />
+<path d='M 1072 100 L 1072 80 Q 1072 72 1080 72 L 1208 72 Q 1216 72 1216 80 L 1216 100 L1072 100 ' style='fill:url(#tbg_C7F4BE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='1072' y='72' width='144' height='160' rx='8' ry='8' style='fill:none;stroke:#272C27'/>
+<a xlink:href='#movies.bajas'><text x='1121' y='91' >bajas</text><title>Collection movies.bajas</title></a>
+  <use id='nn' x='1074' y='109' xlink:href='#nn'/><use id='pk' x='1074' y='108' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#movies.bajas__id'><text id='movies.bajas._id' x='1091' y='119'>_id</text><title>_id
+* oid</title></a>
+<text x='1200' y='120' text-anchor='end' class='colType'>oid</text>  <use id='nn' x='1074' y='125' xlink:href='#nn'/><a xlink:href='#movies.bajas_video'><text id='movies.bajas.video' x='1091' y='135' onmouseover="hghl(['bajas_Virtual Relation','movies.videos._id'])" onmouseout="uhghl(['bajas_Virtual Relation','movies.videos._id'])">video</text><title>video
+* oid</title></a>
+<text x='1200' y='136' text-anchor='end' class='colType'>oid</text><a xlink:href='#movies.bajas.video'><use id='fk' x='1204' y='124' xlink:href='#fk'/><title>References videos ( video -&gt; _id ) </title></a>
+  <use id='nn' x='1074' y='141' xlink:href='#nn'/><a xlink:href='#movies.bajas_motivo'><text id='movies.bajas.motivo' x='1091' y='151'>motivo</text><title>motivo
+* string</title></a>
+<text x='1200' y='152' text-anchor='end' class='colType'>string</text>  <use id='nn' x='1074' y='157' xlink:href='#nn'/><a xlink:href='#movies.bajas_createAt'><text id='movies.bajas.createAt' x='1091' y='167'>createAt</text><title>createAt
+* date</title></a>
+<text x='1200' y='168' text-anchor='end' class='colType'>date</text>  <use id='nn' x='1074' y='173' xlink:href='#nn'/><a xlink:href='#movies.bajas_updateAt'><text id='movies.bajas.updateAt' x='1091' y='183'>updateAt</text><title>updateAt
+* date</title></a>
+<text x='1200' y='184' text-anchor='end' class='colType'>date</text>  <use id='nn' x='1074' y='189' xlink:href='#nn'/><a xlink:href='#movies.bajas_deleteAt'><text id='movies.bajas.deleteAt' x='1091' y='199'>deleteAt</text><title>deleteAt
+* date</title></a>
+<text x='1200' y='200' text-anchor='end' class='colType'>date</text>  <use id='nn' x='1074' y='205' xlink:href='#nn'/><a xlink:href='#movies.bajas___v'><text id='movies.bajas.__v' x='1091' y='215'>__v</text><title>__v
+* integer</title></a>
+<text x='1200' y='216' text-anchor='end' class='colType'>integer</text>
+<!-- == Table 'descuentos' == -->
+<rect class='entity' style='stroke:none;' x='672' y='568' width='176' height='112' rx='8' ry='8' />
+<path d='M 672 596 L 672 576 Q 672 568 680 568 L 840 568 Q 848 568 848 576 L 848 596 L672 596 ' style='fill:url(#tbg_F4DDBE);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='672' y='568' width='176' height='112' rx='8' ry='8' style='fill:none;stroke:#2C2927'/>
+<a xlink:href='#movies.descuentos'><text x='716' y='587' >descuentos</text><title>Collection movies.descuentos</title></a>
+  <use id='nn' x='674' y='605' xlink:href='#nn'/><use id='pk' x='674' y='604' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#movies.descuentos__id'><text id='movies.descuentos._id' x='691' y='615' onmouseover="hghl(['prestamos_Virtual Relation','movies.prestamos.cliente'])" onmouseout="uhghl(['prestamos_Virtual Relation','movies.prestamos.cliente'])">_id</text><title>_id
+* oid</title></a>
+<text x='832' y='616' text-anchor='end' class='colType'>oid</text><a xlink:href='#movies.descuentos._id'><use id='ref' x='836' y='604' xlink:href='#ref'/><title>Referred by prestamos ( cliente -&gt; _id ) </title></a>
+  <use id='nn' x='674' y='621' xlink:href='#nn'/><a xlink:href='#movies.descuentos_minimo'><text id='movies.descuentos.minimo' x='691' y='631'>minimo</text><title>minimo
+* integer</title></a>
+<text x='832' y='632' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='674' y='637' xlink:href='#nn'/><a xlink:href='#movies.descuentos_maximo'><text id='movies.descuentos.maximo' x='691' y='647'>maximo</text><title>maximo
+* integer</title></a>
+<text x='832' y='648' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='674' y='653' xlink:href='#nn'/><a xlink:href='#movies.descuentos_descuento'><text id='movies.descuentos.descuento' x='691' y='663'>descuento</text><title>descuento
+* integer</title></a>
+<text x='832' y='664' text-anchor='end' class='colType'>integer</text>
+<!-- == Table 'nominaciones' == -->
+<rect class='entity' style='stroke:none;' x='784' y='200' width='192' height='96' rx='8' ry='8' />
+<path d='M 784 228 L 784 208 Q 784 200 792 200 L 968 200 Q 976 200 976 208 L 976 228 L784 228 ' style='fill:url(#tbg_BEBEF4);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='784' y='200' width='192' height='96' rx='8' ry='8' style='fill:none;stroke:#27272C'/>
+<a xlink:href='#nominaciones'><text x='827' y='219' >nominaciones</text><title>Sub-document nominaciones</title></a>
+  <use id='nn' x='786' y='237' xlink:href='#nn'/><a xlink:href='#nominaciones_wins'><text id='nominaciones.wins' x='803' y='247'>wins</text><title>wins
+* integer</title></a>
+<text x='960' y='248' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='786' y='253' xlink:href='#nn'/><a xlink:href='#nominaciones_nominations'><text id='nominaciones.nominations' x='803' y='263'>nominations</text><title>nominations
+* integer</title></a>
+<text x='960' y='264' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='786' y='269' xlink:href='#nn'/><a xlink:href='#nominaciones_text'><text id='nominaciones.text' x='803' y='279'>text</text><title>text
+* string</title></a>
+<text x='960' y='280' text-anchor='end' class='colType'>string</text>
+<!-- == Table 'prestamos' == -->
+<rect class='entity' style='stroke:none;' x='368' y='520' width='192' height='256' rx='8' ry='8' />
+<path d='M 368 548 L 368 528 Q 368 520 376 520 L 552 520 Q 560 520 560 528 L 560 548 L368 548 ' style='fill:url(#tbg_D1BEF4);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='368' y='520' width='192' height='256' rx='8' ry='8' style='fill:none;stroke:#28272C'/>
+<a xlink:href='#movies.prestamos'><text x='423' y='539' >prestamos</text><title>Collection movies.prestamos</title></a>
+  <use id='nn' x='370' y='557' xlink:href='#nn'/><use id='pk' x='370' y='556' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#movies.prestamos__id'><text id='movies.prestamos._id' x='387' y='567'>_id</text><title>_id
+* oid</title></a>
+<text x='544' y='568' text-anchor='end' class='colType'>oid</text>  <use id='nn' x='370' y='573' xlink:href='#nn'/><a xlink:href='#movies.prestamos_cliente'><text id='movies.prestamos.cliente' x='387' y='583' onmouseover="hghl(['prestamos_Virtual Relation','movies.descuentos._id','prestamos_Fk_prestamos_clientes','movies.clientes._id'])" onmouseout="uhghl(['prestamos_Virtual Relation','movies.descuentos._id','prestamos_Fk_prestamos_clientes','movies.clientes._id'])">cliente</text><title>cliente
+* oid</title></a>
+<text x='544' y='584' text-anchor='end' class='colType'>oid</text><a xlink:href='#movies.prestamos.cliente'><use id='fk' x='548' y='572' xlink:href='#fk'/><title>References descuentos ( cliente -&gt; _id ) 
+References clientes ( cliente -&gt; _id ) </title></a>
+  <use id='nn' x='370' y='589' xlink:href='#nn'/><a xlink:href='#movies.prestamos_videos'><text id='movies.prestamos.videos' x='387' y='599' onmouseover="hghl(['prestamos_Fk_prestamos_videos','movies.videos._id'])" onmouseout="uhghl(['prestamos_Fk_prestamos_videos','movies.videos._id'])">videos</text><title>videos
+* array</title></a>
+<text x='544' y='600' text-anchor='end' class='colType'>array</text><a xlink:href='#movies.prestamos.videos'><use id='fk' x='548' y='588' xlink:href='#fk'/><title>References videos ( videos -&gt; _id ) </title></a>
+  <use id='nn' x='370' y='605' xlink:href='#nn'/><a xlink:href='#movies.prestamos_fechaDevolucion'><text id='movies.prestamos.fechaDevolucion' x='387' y='615'>fechaDevolucion</text><title>fechaDevolucion
+* date</title></a>
+<text x='544' y='616' text-anchor='end' class='colType'>date</text>  <use id='nn' x='370' y='621' xlink:href='#nn'/><a xlink:href='#movies.prestamos_diasPrestamo'><text id='movies.prestamos.diasPrestamo' x='387' y='631'>diasPrestamo</text><title>diasPrestamo
+* integer</title></a>
+<text x='544' y='632' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='370' y='637' xlink:href='#nn'/><a xlink:href='#movies.prestamos_descuento'><text id='movies.prestamos.descuento' x='387' y='647'>descuento</text><title>descuento
+* integer</title></a>
+<text x='544' y='648' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='370' y='653' xlink:href='#nn'/><a xlink:href='#movies.prestamos_importeTotal'><text id='movies.prestamos.importeTotal' x='387' y='663'>importeTotal</text><title>importeTotal
+* integer</title></a>
+<text x='544' y='664' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='370' y='669' xlink:href='#nn'/><a xlink:href='#movies.prestamos_devuelto'><text id='movies.prestamos.devuelto' x='387' y='679'>devuelto</text><title>devuelto
+* boolean</title></a>
+<text x='544' y='680' text-anchor='end' class='colType'>boolean</text>  <use id='nn' x='370' y='685' xlink:href='#nn'/><a xlink:href='#movies.prestamos_createAt'><text id='movies.prestamos.createAt' x='387' y='695'>createAt</text><title>createAt
+* date</title></a>
+<text x='544' y='696' text-anchor='end' class='colType'>date</text>  <use id='nn' x='370' y='701' xlink:href='#nn'/><a xlink:href='#movies.prestamos_updateAt'><text id='movies.prestamos.updateAt' x='387' y='711'>updateAt</text><title>updateAt
+* date</title></a>
+<text x='544' y='712' text-anchor='end' class='colType'>date</text>  <a xlink:href='#movies.prestamos_deleted'><text id='movies.prestamos.deleted' x='387' y='727'>deleted</text><title>deleted
+boolean</title></a>
+<text x='544' y='728' text-anchor='end' class='colType'>boolean</text>  <a xlink:href='#movies.prestamos_deleteAt'><text id='movies.prestamos.deleteAt' x='387' y='743'>deleteAt</text><title>deleteAt
+date</title></a>
+<text x='544' y='744' text-anchor='end' class='colType'>date</text>  <a xlink:href='#movies.prestamos___v'><text id='movies.prestamos.__v' x='387' y='759'>__v</text><title>__v
+integer</title></a>
+<text x='544' y='760' text-anchor='end' class='colType'>integer</text>
+<!-- == Table 'videos' == -->
+<rect class='entity' style='stroke:none;' x='528' y='72' width='208' height='288' rx='8' ry='8' />
+<path d='M 528 100 L 528 80 Q 528 72 536 72 L 728 72 Q 736 72 736 80 L 736 100 L528 100 ' style='fill:url(#tbg_BEBEF4);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='528' y='72' width='208' height='288' rx='8' ry='8' style='fill:none;stroke:#27272C'/>
+<a xlink:href='#movies.videos'><text x='605' y='91' >videos</text><title>Collection movies.videos</title></a>
+  <use id='nn' x='530' y='109' xlink:href='#nn'/><use id='pk' x='530' y='108' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#movies.videos__id'><text id='movies.videos._id' x='547' y='119' onmouseover="hghl(['bajas_Virtual Relation','movies.bajas.video','prestamos_Fk_prestamos_videos','movies.prestamos.videos'])" onmouseout="uhghl(['bajas_Virtual Relation','movies.bajas.video','prestamos_Fk_prestamos_videos','movies.prestamos.videos'])">_id</text><title>_id
+* oid</title></a>
+<text x='720' y='120' text-anchor='end' class='colType'>oid</text><a xlink:href='#movies.videos._id'><use id='ref' x='724' y='108' xlink:href='#ref'/><title>Referred by bajas ( video -&gt; _id ) 
+Referred by prestamos ( videos -&gt; _id ) </title></a>
+  <use id='nn' x='530' y='125' xlink:href='#nn'/><a xlink:href='#movies.videos_titulo'><text id='movies.videos.titulo' x='547' y='135'>titulo</text><title>titulo
+* string</title></a>
+<text x='720' y='136' text-anchor='end' class='colType'>string</text>  <use id='nn' x='530' y='141' xlink:href='#nn'/><a xlink:href='#movies.videos_genero'><text id='movies.videos.genero' x='547' y='151'>genero</text><title>genero
+* array</title></a>
+<text x='720' y='152' text-anchor='end' class='colType'>array</text>  <use id='nn' x='530' y='157' xlink:href='#nn'/><a xlink:href='#movies.videos_anioPublicacion'><text id='movies.videos.anioPublicacion' x='547' y='167'>anioPublicacion</text><title>anioPublicacion
+* integer</title></a>
+<text x='720' y='168' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='530' y='173' xlink:href='#nn'/><a xlink:href='#movies.videos_duracion'><text id='movies.videos.duracion' x='547' y='183'>duracion</text><title>duracion
+* integer</title></a>
+<text x='720' y='184' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='530' y='189' xlink:href='#nn'/><a xlink:href='#movies.videos_reparto'><text id='movies.videos.reparto' x='547' y='199'>reparto</text><title>reparto
+* array</title></a>
+<text x='720' y='200' text-anchor='end' class='colType'>array</text>  <a xlink:href='#movies.videos_director'><text id='movies.videos.director' x='547' y='215'>director</text><title>director
+string</title></a>
+<text x='720' y='216' text-anchor='end' class='colType'>string</text>  <a xlink:href='#movies.videos_nominaciones'><text id='movies.videos.nominaciones' x='547' y='231' onmouseover="hghl(['nominaciones_JSon'])" onmouseout="uhghl(['nominaciones_JSon'])">nominaciones</text><title>nominaciones
+object</title></a>
+<text x='720' y='232' text-anchor='end' class='colType'>object</text>  <use id='nn' x='530' y='237' xlink:href='#nn'/><a xlink:href='#movies.videos_costoUnitario'><text id='movies.videos.costoUnitario' x='547' y='247'>costoUnitario</text><title>costoUnitario
+* double</title></a>
+<text x='720' y='248' text-anchor='end' class='colType'>double</text>  <use id='nn' x='530' y='253' xlink:href='#nn'/><a xlink:href='#movies.videos_copias'><text id='movies.videos.copias' x='547' y='263'>copias</text><title>copias
+* integer</title></a>
+<text x='720' y='264' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='530' y='269' xlink:href='#nn'/><a xlink:href='#movies.videos_createAt'><text id='movies.videos.createAt' x='547' y='279'>createAt</text><title>createAt
+* date</title></a>
+<text x='720' y='280' text-anchor='end' class='colType'>date</text>  <use id='nn' x='530' y='285' xlink:href='#nn'/><a xlink:href='#movies.videos_updateAt'><text id='movies.videos.updateAt' x='547' y='295'>updateAt</text><title>updateAt
+* date</title></a>
+<text x='720' y='296' text-anchor='end' class='colType'>date</text>  <use id='nn' x='530' y='301' xlink:href='#nn'/><a xlink:href='#movies.videos_deleted'><text id='movies.videos.deleted' x='547' y='311'>deleted</text><title>deleted
+* boolean</title></a>
+<text x='720' y='312' text-anchor='end' class='colType'>boolean</text>  <a xlink:href='#movies.videos_deleteAt'><text id='movies.videos.deleteAt' x='547' y='327'>deleteAt</text><title>deleteAt
+date</title></a>
+<text x='720' y='328' text-anchor='end' class='colType'>date</text>  <a xlink:href='#movies.videos___v'><text id='movies.videos.__v' x='547' y='343'>__v</text><title>__v
+integer</title></a>
+<text x='720' y='344' text-anchor='end' class='colType'>integer</text>
+<!-- == Table 'tarifas' == -->
+<rect class='entity' style='stroke:none;' x='336' y='88' width='128' height='96' rx='8' ry='8' />
+<path d='M 336 116 L 336 96 Q 336 88 344 88 L 456 88 Q 464 88 464 96 L 464 116 L336 116 ' style='fill:url(#tbg_BED3F4);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='336' y='88' width='128' height='96' rx='8' ry='8' style='fill:none;stroke:#27282C'/>
+<a xlink:href='#movies.tarifas'><text x='374' y='107' >tarifas</text><title>Collection movies.tarifas</title></a>
+  <use id='nn' x='338' y='125' xlink:href='#nn'/><use id='pk' x='338' y='124' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#movies.tarifas__id'><text id='movies.tarifas._id' x='355' y='135'>_id</text><title>_id
+* oid</title></a>
+<text x='448' y='136' text-anchor='end' class='colType'>oid</text>  <use id='nn' x='338' y='141' xlink:href='#nn'/><a xlink:href='#movies.tarifas_dias'><text id='movies.tarifas.dias' x='355' y='151'>dias</text><title>dias
+* integer</title></a>
+<text x='448' y='152' text-anchor='end' class='colType'>integer</text>  <use id='nn' x='338' y='157' xlink:href='#nn'/><a xlink:href='#movies.tarifas_costo'><text id='movies.tarifas.costo' x='355' y='167'>costo</text><title>costo
+* integer</title></a>
+<text x='448' y='168' text-anchor='end' class='colType'>integer</text>
+<!-- == Table 'clientes' == -->
+<rect class='entity' style='stroke:none;' x='48' y='72' width='208' height='288' rx='8' ry='8' />
+<path d='M 48 100 L 48 80 Q 48 72 56 72 L 248 72 Q 256 72 256 80 L 256 100 L48 100 ' style='fill:url(#tbg_BED3F4);stroke:1;stroke-opacity:0.1;' />
+<rect class='entity' x='48' y='72' width='208' height='288' rx='8' ry='8' style='fill:none;stroke:#27282C'/>
+<a xlink:href='#movies.clientes'><text x='121' y='91' >clientes</text><title>Collection movies.clientes</title></a>
+  <use id='nn' x='50' y='109' xlink:href='#nn'/><use id='pk' x='50' y='108' xlink:href='#pk'><title>Pk _id_ ( _id ) </title></use><a xlink:href='#movies.clientes__id'><text id='movies.clientes._id' x='67' y='119' onmouseover="hghl(['prestamos_Fk_prestamos_clientes','movies.prestamos.cliente'])" onmouseout="uhghl(['prestamos_Fk_prestamos_clientes','movies.prestamos.cliente'])">_id</text><title>_id
+* oid</title></a>
+<text x='240' y='120' text-anchor='end' class='colType'>oid</text><a xlink:href='#movies.clientes._id'><use id='ref' x='244' y='108' xlink:href='#ref'/><title>Referred by prestamos ( cliente -&gt; _id ) </title></a>
+  <use id='nn' x='50' y='125' xlink:href='#nn'/><a xlink:href='#movies.clientes_nombreCompleto'><text id='movies.clientes.nombreCompleto' x='67' y='135'>nombreCompleto</text><title>nombreCompleto
+* string</title></a>
+<text x='240' y='136' text-anchor='end' class='colType'>string</text>  <use id='nn' x='50' y='141' xlink:href='#nn'/><a xlink:href='#movies.clientes_nit'><text id='movies.clientes.nit' x='67' y='151'>nit</text><title>nit
+* string</title></a>
+<text x='240' y='152' text-anchor='end' class='colType'>string</text>  <use id='nn' x='50' y='157' xlink:href='#nn'/><a xlink:href='#movies.clientes_celular'><text id='movies.clientes.celular' x='67' y='167'>celular</text><title>celular
+* string</title></a>
+<text x='240' y='168' text-anchor='end' class='colType'>string</text>  <use id='nn' x='50' y='173' xlink:href='#nn'/><a xlink:href='#movies.clientes_fechaNacimiento'><text id='movies.clientes.fechaNacimiento' x='67' y='183'>fechaNacimiento</text><title>fechaNacimiento
+* date</title></a>
+<text x='240' y='184' text-anchor='end' class='colType'>date</text>  <use id='nn' x='50' y='189' xlink:href='#nn'/><a xlink:href='#movies.clientes_direccion'><text id='movies.clientes.direccion' x='67' y='199'>direccion</text><title>direccion
+* string</title></a>
+<text x='240' y='200' text-anchor='end' class='colType'>string</text>  <use id='nn' x='50' y='205' xlink:href='#nn'/><a xlink:href='#movies.clientes_latitud'><text id='movies.clientes.latitud' x='67' y='215'>latitud</text><title>latitud
+* string</title></a>
+<text x='240' y='216' text-anchor='end' class='colType'>string</text>  <use id='nn' x='50' y='221' xlink:href='#nn'/><a xlink:href='#movies.clientes_longitud'><text id='movies.clientes.longitud' x='67' y='231'>longitud</text><title>longitud
+* string</title></a>
+<text x='240' y='232' text-anchor='end' class='colType'>string</text>  <use id='nn' x='50' y='237' xlink:href='#nn'/><a xlink:href='#movies.clientes_createAt'><text id='movies.clientes.createAt' x='67' y='247'>createAt</text><title>createAt
+* date</title></a>
+<text x='240' y='248' text-anchor='end' class='colType'>date</text>  <use id='nn' x='50' y='253' xlink:href='#nn'/><a xlink:href='#movies.clientes_updateAt'><text id='movies.clientes.updateAt' x='67' y='263'>updateAt</text><title>updateAt
+* date</title></a>
+<text x='240' y='264' text-anchor='end' class='colType'>date</text>  <use id='nn' x='50' y='269' xlink:href='#nn'/><a xlink:href='#movies.clientes_deleted'><text id='movies.clientes.deleted' x='67' y='279'>deleted</text><title>deleted
+* boolean</title></a>
+<text x='240' y='280' text-anchor='end' class='colType'>boolean</text>  <a xlink:href='#movies.clientes_deleteAt'><text id='movies.clientes.deleteAt' x='67' y='295'>deleteAt</text><title>deleteAt
+date</title></a>
+<text x='240' y='296' text-anchor='end' class='colType'>date</text>  <a xlink:href='#movies.clientes_bloqueado'><text id='movies.clientes.bloqueado' x='67' y='311'>bloqueado</text><title>bloqueado
+boolean</title></a>
+<text x='240' y='312' text-anchor='end' class='colType'>boolean</text>  <a xlink:href='#movies.clientes_motivoBloqueo'><text id='movies.clientes.motivoBloqueo' x='67' y='327'>motivoBloqueo</text><title>motivoBloqueo
+string</title></a>
+<text x='240' y='328' text-anchor='end' class='colType'>string</text>  <a xlink:href='#movies.clientes___v'><text id='movies.clientes.__v' x='67' y='343'>__v</text><title>__v
+integer</title></a>
+<text x='240' y='344' text-anchor='end' class='colType'>integer</text>
+</g></svg>

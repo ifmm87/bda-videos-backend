@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: PROYECTO FINAL DE MODULO
   version: '1.0'
-  description: Base de datos avanzadas - Movies
+  description: Base de datos avanzadas - Videos
   contact:
     name: ifmm87@gmail.com
 servers:
