@@ -3,7 +3,7 @@ const { Schema } = require('mongoose');
 const { ObjectId } = Schema.Types;
 let schema = Schema({
   duracion: { type: Number, required: false },
-  genero: { type: String, required: true },
+  genero: { type: Object, required: true },
   titulo: { type: String, required: true },
   anioPublicacion: { type: Number, required: true },
   nominaciones: { type: Object, required: false },

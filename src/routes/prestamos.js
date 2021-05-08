@@ -9,5 +9,5 @@ app.get('/ranking', Prestamos.ranking);
 app.get('/:idPrestamo', Prestamos.mostrar);
 app.post('/', Prestamos.crear);
 app.put('/:idPrestamo', Prestamos.modificar);
-app.delete('/', Prestamos.eliminar);
+app.delete('/:idPrestamo', Prestamos.eliminar);
 module.exports = app;

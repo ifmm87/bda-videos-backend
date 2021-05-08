@@ -43,44 +43,6 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'ok'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      _id:
-                        type: string
-                        example: '000000000000000000000001'
-                      nombreCompleto:
-                        type: string
-                        example: 'jose jose'
-                      nit:
-                        type: string
-                        example: '12773747843' 
-                      celular:
-                        type: string
-                        example: '74958585'
-                      fechaNacimiento:
-                        type: string
-                        example: '2000-10-10'
-                      direccion:
-                        type: string
-                        example: 'direccion 123'
-                      latitud:
-                        type: string
-                        example: '-16,89879879'
-                      longitud:
-                        type: string
-                        example: '-67,89879879'
     get:
       summary: Servicio para recuperar clientes
       tags: ['clientes']
@@ -88,944 +50,359 @@ paths:
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'ok'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      _id:
-                        type: string
-                        example: '000000000000000000000001'
-                      nombreCompleto:
-                        type: string
-                        example: 'jose jose'
-                      nit:
-                        type: string
-                        example: '12773747843' 
-                      celular:
-                        type: string
-                        example: '74958585'
-                      fechaNacimiento:
-                        type: string
-                        example: '2000-10-10'
-                      direccion:
-                        type: string
-                        example: 'direccion 123'
-                      latitud:
-                        type: string
-                        example: '-16,89879879'
-                      longitud:
-                        type: string
-                        example: '-67,89879879'
-  /api/auth/estudiante:
-    post:
-      operationId: AuthenticationController_loginEstudiante
-      summary: Login para estudiantes
-      tags: ['autenticacion']
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                usuario:
-                  type: string
-                  description: Nro. documento de identidad
-                  example: Nzg5NDU0NQ
-                rude:
-                  type: string
-                  description: Registro único de estudiante
-                  example: UlVERTAwMDE
-              required:
-                - usuario
-                - rude
-      responses:
-        "200":
-          description: Inicio de sesión correcto
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  finalizado:
-                    type: boolean
-                    example: true
-                    description: Estado de respuesta
-                  mensaje:
-                    type: string
-                    example: Sessión iniciada correctamente
-                    description: Mensaje de respuesta
-                  datos:
-                    type: object
-                    example:
-                      access_token: eyJhbGciOiJIUzI1Ni...
-                      id: 19eacbcc-3519-45ce
-                      rude: RUDE0001
-                      persona:
-                        nroDocumento: "1234567"
-                        nombres: JUAN
-                        primerApellido: PEREZ
-                        segundoApellido: null
-                    description: Datos de la respuesta
-  /api/usuarios/perfil:
+  /clientes/{idCliente}:
     get:
-      summary: Obtiene la informacion del perfil del usuario
-      tags: ['usuario']
-      operationId: get-api-v1-usuarios-profile
-      description: Api para obtener la informacion del perfil del usuario
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'Registro(s) obtenido(s) con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                      usuario:
-                        type: string
-                        example: 'ADMINISTRADOR'
-                      roles:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            rol: 
-                              type: string
-                              example: 'ADMINISTRADOR'
-                            modulos:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  id: 
-                                    type: string
-                                    example: 'b320fe27-5644-5712-8423-198302b01e25'
-                                  label:
-                                    type: string
-                                    example: 'Usuarios'
-                                  url:
-                                    type: string
-                                    example: '/usuarios'
-                                  icono:
-                                    type: string
-                                    example: 'mdiAccountCog'
-                                  nombre:
-                                    type: string
-                                    example: 'usuarios'
-                                  estado:
-                                    type: string
-                                    example: 'ACTIVO'
-                      persona:
-                        type: object
-                        properties:
-                          nombres:
-                            type: string
-                            example: 'JUAN'
-                          primerApellido:
-                            type: string
-                            example: 'PEREZ'
-                          segundoApellido:
-                            type: string
-                            example: 'PEREZ'
-                          tipoDocumento:
-                            type: string
-                            example: 'CI'
-                          nroDocumento:
-                            type: string
-                            example: '9270815'
-                          fechaNacimiento:
-                            type: string
-                            example: '2002-02-09T00:00:00.000Z'
-  /api/usuarios/activacion/{id}:
-    patch:
-      summary: Activa un usuario
-      tags: ['usuario']
-      operationId: get-api-v1-usuarios-activacion
-      description: Api para activar un usuario
       parameters:
         - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-            example: 'a9d1a5cc-4590-5c67-a0b2-a4b37b862802'
-          description: id de usuario
+          name: idCliente
+      summary: Servicio para recuperar 1 cliente
+      tags: ['clientes']
+      operationId: get-api-v1-clientes-single
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'Registro actualizado con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                      estado:
-                        type: string
-                        example: 'ACTIVO'
-  /api/autorizacion/politicas/roles:
-    get:
-      summary: Api para obtener las politicas definidas en formato CASBIN
-      tags: ['autorizacion']
-      operationId: get-api-autorizacion-politicas-roles
-      description: Api para obtener las politicas definidas en formato CASBIN
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'Registro(s) obtenido(s) con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: array
-                    items:
-                      type: array
-                      items:
-                        type: string
-                      example: ['ADMINISTRADOR', '/usuarios', 'create|read|update', 'frontend']
-  /api/usuarios:
-    get:
-      summary: Api para obtener el listado de usuarios
-      tags: ['usuario']
-      operationId: get-api-usuarios
-      description: Api para obtener el listado de usuarios
+    put:
       parameters:
-        - in: query
-          name: pagina
-          schema:
-            type: string
-            example: 1
-          description: numero de la pagina a visualizar
-        - in: query
-          name: limite
-          schema:
-            type: string
-            example: 10
-          description: numero de filas a visualizar
-        - in: query
-          name: orden
-          schema:
-            type: string
-            example: ASC
-          description: tipo de orden a visualizar
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'Registro(s) obtenido(s) con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      filas:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                              example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                            usuario:
-                              type: string
-                              example: 'ADMINISTRADOR'
-                            estado:  
-                              type: string
-                              example: 'ACTIVO'
-                            persona:
-                              type: object
-                              properties:
-                                nroDocumento:
-                                  type: string
-                                  example: '1234567'
-                                nombres:
-                                  type: string
-                                  example: 'JUAN'
-                                primerApellido:
-                                  type: string
-                                  example: 'PEREZ'
-                                segundoApellido:
-                                  type: string
-                                  example: 'PEREZ'
-                            usuarioRol:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  estado:
-                                    type: string
-                                    example: 'ACTIVO'
-                                  id:
-                                    type: string
-                                    example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                                  rol:
-                                    type: object
-                                    properties:
-                                      rol: 
-                                        type: string
-                                        example: 'ADMINISTRADOR'
-                      total:
-                        type: number
-                        example: 1
-    post:
-      summary: Api para crear una nuevo usuario
-      tags: ['usuario']
-      operationId: post-api-usuarios
-      description: Api para crear un nuevo usuario
+        - in: path
+          name: idCliente
+      summary: Servicio para editar 1 cliente
+      tags: ['clientes']
+      operationId: get-api-v1-clientes-single
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                usuario:
+                nombreCompleto:
                   type: string
-                  example: '123456'
-                contrasena:
+                  example: 'jose jose'
+                nit:
                   type: string
-                  example: 'password'
-                persona:
-                  type: object
-                  properties:
-                    nombres:
-                      type: string
-                      example: 'JUAN'
-                    primerApellido:
-                      type: string
-                      example: 'PEREZ'
-                    segundoApellido:
-                      type: string
-                      example: 'PEREZ'
-                    nroDocumento:
-                      type: string
-                      example: '123456'
-                    fechaNacimiento:
-                      type: string
-                      example: '1999-11-11'
-      responses:
-        '201':
-          description: CREATED
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje:
-                    type: string
-                    example: 'Registro creado con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      usuario:
-                        type: string
-                        example: '123456'
-                      estado:
-                        type: string
-                        example: 'CREADO'
-                      persona:
-                        type: object
-                        properties:
-                          nombres:
-                            type: string
-                            example: 'JUAN'
-                          primerApellido:
-                            type: string
-                            example: 'PEREZ'
-                          segundoApellido:
-                            type: string
-                            example: 'PEREZ'
-                          nroDocumento:
-                            type: string
-                            example: '123456'
-                          fechaNacimiento:
-                            type: string
-                            example: '1999-11-11'
-                          
-  /api/autorizacion/politicas:
-    get:
-      summary: Api para obtener el listado de politicas
-      tags: ['autorizacion']
-      operationId: get-api-autorizacion-politicas
-      description: Api para obtener el listado de politicas
+                  example: '12773747843' 
+                celular:
+                  type: string
+                  example: '74958585'
+                fechaNacimiento:
+                  type: string
+                  example: '2000-10-10'
+                direccion:
+                  type: string
+                  example: 'direccion 123'
+                latitud:
+                  type: string
+                  example: '-16,89879879'
+                longitud:
+                  type: string
+                  example: '-67,89879879'
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'Registro(s) obtenido(s) con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      filas:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            sujeto:
-                              type: string
-                              example: 'ADMINISTRADOR'
-                            objeto:
-                              type: string
-                              example: '/usuarios'
-                            accion:  
-                              type: string
-                              example: 'read'
-                            app:
-                              type: string
-                              example: 'frontend'
-                      total:
-                        type: number
-                        example: 1
-    post:
-      summary: Api para crear una nueva politica
-      tags: ['autorizacion']
-      operationId: post-api-autorizacion-politicas
-      description: Api para crear una nueva politica
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                sujeto:
-                  type: string
-                  example: 'ADMINISTRADOR'
-                objeto:
-                  type: string
-                  example: 'recurso'
-                accion:
-                  type: string
-                  example: 'read'
-                app:
-                  type: string
-                  example: 'frontend'
-      responses:
-        '201':
-          description: CREATED
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje:
-                    type: string
-                    example: 'Registro creado con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      sujeto:
-                        type: string
-                        example: 'ADMINISTRADOR'
-                      objeto:
-                        type: string
-                        example: 'recurso'
-                      accion:
-                        type: string
-                        example: 'read'
-                      app:
-                        type: string
-                        example: 'frontend'
     delete:
-      summary: Api para eliminar una politica
-      tags: ['autorizacion']
-      operationId: delete-api-autorizacion-politicas
-      description: Api para eliminar una politica
-      responses:
-        '204':
-          description: NOT_CONTENT
       parameters:
-        - in: query
-          name: sujeto
-          schema:
-            type: string
-            example: ADMINISTRADOR
-          description: nombre del rol (SUJETO)
-        - in: query
-          name: objeto
-          schema:
-            type: string
-            example: RECURSO
-          description: nombre del recurso (OBJETO)
-        - in: query
-          name: accion
-          schema:
-            type: string
-            example: GET
-          description: nombre de la accion (ACCION)
-        - in: query
-          name: app
-          schema:
-            type: string
-            example: Backend
-          description: nombre de la aplicacion
-  /api/parametros:
-    get:
-      summary: Api para obtener el listado de parametros
-      tags: ['parametros']
-      operationId: get-api-parametros
-      description: Api para obtener el listado de parametros
+        - in: path
+          name: idCliente
+      summary: Servicio para eliminar 1 cliente
+      tags: ['clientes']
+      operationId: get-api-v1-clientes-single
       responses:
         '200':
           description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'Registro(s) obtenido(s) con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      filas:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: string
-                              example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                            codigo:
-                              type: string 
-                              example: 'TD-1'
-                            nombre:  
-                              type: string
-                              example: 'Tipo de documento CI'
-                            grupo:
-                              type: string
-                              example: 'TD'
-                      total:
-                        type: number
-                        example: 1
+  /clientes/{idCliente}/bloquear:
+    patch:
+      parameters:
+        - in: path
+          name: idCliente
+      summary: Servicio para bloquear 1 cliente
+      tags: ['clientes']
+      operationId: get-api-v1-clientes-single
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                motivoBloqueo:
+                  type: string
+                  example: 'bloqueado,no devolvio'
+      responses:
+        '200':
+          description: OK
+  /clientes/{idCliente}/desbloquear:
+    patch:
+      parameters:
+        - in: path
+          name: idCliente
+      summary: Servicio para desbloquear 1 cliente
+      tags: ['clientes']
+      operationId: get-api-v1-clientes-single
+      responses:
+        '200':
+          description: OK
+  /clientes/{idCliente}/historial:
+    get:
+      parameters:
+        - in: path
+          name: idCliente
+      summary: Servicio para bloquear 1 cliente
+      tags: ['clientes']
+      operationId: get-api-v1-clientes-single
+      responses:
+        '200':
+          description: OK
+  
+  /videos:
     post:
-      summary: Api para crear un nuevo parametro
-      tags: ['parametros']
-      operationId: post-api-parametros
-      description: Api para crear un nuevo parametro
+      summary: Servicio para crear un nuevo video
+      tags: ['videos']
+      operationId: post-api-v1-videos
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                codigo:
+                titulo:
                   type: string
-                  example: 'TD-2'
-                nombre:
-                  type: string
-                  example: 'Documento extranjeria'
-                grupo:
-                  type: string
-                  example: 'TD'
-                descripcion:
-                  type: string
-                  example: 'Tipo de documento de extranjeria'
-      responses:
-        '201':
-          description: CREATED
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje:
-                    type: string
-                    example: 'Registro creado con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: object
-                    properties:
-                      codigo:
-                        type: string
-                        example: 'TD-1'
-                      nombre:
-                        type: string
-                        example: 'Documento extranjeria'
-                      grupo:
-                        type: string
-                        example: 'TD'
-                      descripcion:
-                        type: string
-                        example: 'Tipo de documento de extranjeria'
-                      id:
-                        type: string
-                        example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                      estado:
-                        type: string
-                        example: 'ACTIVO'
-  /api/parametros/{grupo}:
-    get:
-      summary: Api para obtener el listado de parametros por grupo
-      tags: ['parametros']
-      operationId: get-api-parametros-grupo
-      description: Api para obtener el listado de parametros por grupo
-      parameters:
-        - in: path
-          name: grupo
-          required: true
-          schema:
-            type: string
-            example: 'TD'
-          description: grupo de parametros
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'Registro(s) obtenido(s) con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                        nombre:
-                          type: string
-                          example: 'Cedula de identidad'
-                        codigo:
-                          type: string
-                          example: 'TD-1'
-  /api/roles:
-    get:
-      summary: Api para obtener el listado de roles
-      tags: ['parametros']
-      operationId: get-api-roles
-      description: Api para obtener el listado de roles
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  mensaje: 
-                    type: string
-                    example: 'Registro(s) obtenido(s) con exito!'
-                  finalizado:
-                    type: boolean
-                    example: true
-                  datos:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                        rol:
-                          type: string 
-                          example: 'ADMINISTRADOR'
-  /api/examenes/{id}/iniciar:
-    patch:
-      summary: Api para iniciar un examen habilitado
-      tags: ['examen']
-      operationId: patch-api-examen-iniciar
-      description: Permite iniciar un examen para un estudiante, el examen debe estar habilitado 
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-            example: 'aadacc5e-c9ec-4ff8-9ee2-847e4ed502f8'
-          description: identificador del examen de un estudiante
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  idExamen: 
-                    type: string
-                    example: 'aadacc5e-c9ec-4ff8-9ee2-847e4ed502f8'
-                  fechaHoraInicio:
-                    type: integer
-                    example: 1619462591762
-                  duracionMinutos:
-                    type: integer
-                    example: 60
-                  tipoPrueba:
-                    type: string
-                    example: 'ONLINE'
-                  estado:
-                    type: string
-                    example: 'EN_PROCESO'
-                  idEstudiante:
-                    type: string
-                    example: '954c7fdb-f54d-47ef-97d0-10464b244652'
-                  area:
-                    type: string
-                    example: 'Fisica'
-                  etapa:
-                    type: string
-                    example: 'Dos'
-                  gradoEscolar:
-                    type: string
-                    example: 'Segundo de secundaria'
-                  preguntas:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                        tipoPregunta:
-                          type: string 
-                          example: 'SELECCION'
-                        textoPregunta:
-                          type: string 
-                          example: 'En un supermercado hay 6 hileras de 6 carros cada una ¿Cuántos carros hay en total?'
-                        imagenPregunta:
-                          type: string 
-                          example: null
-                        opciones:
-                          type: object 
-                          example: { a: 50, b: 100, c: 'Ninguno de los anteriores' }
-                        respuestas:
-                          type: array 
-                          example: null
-  /api/examenes/{id}:
-    get:
-      summary: Api para recuperar un examen en proceso
-      tags: ['examen']
-      operationId: patch-api-examen-recuperar
-      description: Permite recuperar el cuerpo de un examen de un estudiante, este examen debe estar en curso
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-            example: 'aadacc5e-c9ec-4ff8-9ee2-847e4ed502f8'
-          description: identificador del examen de un estudiante
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  idExamen: 
-                    type: string
-                    example: 'aadacc5e-c9ec-4ff8-9ee2-847e4ed502f8'
-                  fechaHoraInicio:
-                    type: integer
-                    example: 1619462591762
-                  duracionMinutos:
-                    type: integer
-                    example: 60
-                  tipoPrueba:
-                    type: string
-                    example: 'ONLINE'
-                  estado:
-                    type: string
-                    example: 'EN_PROCESO'
-                  idEstudiante:
-                    type: string
-                    example: '954c7fdb-f54d-47ef-97d0-10464b244652'
-                  area:
-                    type: string
-                    example: 'Fisica'
-                  etapa:
-                    type: string
-                    example: 'Dos'
-                  gradoEscolar:
-                    type: string
-                    example: 'Segundo de secundaria'
-                  preguntas:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          example: 'd5de12df-3cc3-5a58-a742-be24030482d8'
-                        tipoPregunta:
-                          type: string 
-                          example: 'SELECCION'
-                        textoPregunta:
-                          type: string 
-                          example: 'En un supermercado hay 6 hileras de 6 carros cada una ¿Cuántos carros hay en total?'
-                        imagenPregunta:
-                          type: string 
-                          example: null
-                        opciones:
-                          type: object 
-                          example: { a: 50, b: 100, c: 'Ninguno de los anteriores' }
-                        respuestas:
-                          type: array 
-                          example: null
-  /api/examenes/{id}/finalizar:
-    patch:
-      summary: Api para finalizar un examen en proceso
-      tags: ['examen']
-      operationId: patch-api-examen-finalizar
-      description: Permite finalizar el examen en curso de un estudiante
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-            example: 'aadacc5e-c9ec-4ff8-9ee2-847e4ed502f8'
-          description: identificador del examen de un estudiante
-      responses:
-        '200':
-          description: OK
-  "/api/examenes/detalle/{id}":
-    patch:
-      operationId: ExamenController_guardarExamenDetallePorId
-      summary: Guardar respuestas de una pregunta
-      tags: ['examen']
-      parameters:
-        - name: id
-          required: true
-          in: path
-          description: Identificador de estudiante-examen-detalle
-          example: 9c382541-0120-4045-a98d-63cb6831fb47
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                respuestas:
-                  description: Respuestas de la pregunta
-                  example:
-                    - {}
+                  example: 'Sleepy Hollow'
+                genero:
                   type: array
                   items:
                     type: string
-              required:
-                - respuestas
+                    example: 'Terror'
+                duracion:
+                  type: string
+                  example: '230'
+                costoUnitario:
+                  type: string
+                  example: 78.9
+                copias:
+                  type: string
+                  example: 5
+                anioPublicacion:
+                  type: number
+                  example: 2005
+                reparto:
+                  type: array
+                  items:
+                    type:string
+                  example: ["Jhonny Deep", "Cristina Picci"]
       responses:
-        "201":
-          description: Respuestas guardadas correctamente
-          content:
-            application/json:
-              schema:
-                type: object
-  "/api/estudiantes/{id}/examenes":
+        '200':
+          description: OK
     get:
-      operationId: EstudianteController_obtenerEstudianteExamenes
-      summary: Obtener examenes disponibles del estudiante
-      tags: ["estudiantes"]
-      parameters:
-        - name: id
-          required: true
-          in: path
-          description: Identificador de estudiante
-          example: 19eacbcc-3519-45ce-9de7-1ac2eee0aab7
-          schema:
-            type: string
+      summary: Servicio para recuperar videos
+      tags: ['videos']
+      operationId: get-api-v1-vieos
       responses:
-        "200":
-          description: Datos obtenidos correctamente
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  finalizado:
-                    type: boolean
-                  mensaje:
+        '200':
+          description: OK
+  /videos/{idVideo}:
+    get:
+      parameters:
+        - in: path
+          name: idVideo
+      summary: Servicio para recuperar 1 video
+      tags: ['videos']
+      operationId: get-api-v1-videos-single
+      responses:
+        '200':
+          description: OK
+    put:
+      parameters:
+        - in: path
+          name: idVideo
+      summary: Servicio para editar 1 video
+      tags: ['videos']
+      operationId: get-api-v1-clientes-videos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                titulo:
+                  type: string
+                  example: 'Sleepy Hollow'
+                genero:
+                  type: array
+                  items:
                     type: string
-                    example: Datos obtenidos correctamente
-                  datos:
-                    type: object
-                    example:
-                      - id: 9fbba8ae-d856-42bd-a7b5-fd91f715db3b
-                        estado: ACTIVO
-                        calendarioFechaHoraInicio: 1618401600000
-                        calendarioFechaHoraFin: 1618405200000
-                        areaNombre: Matemáticas
-                        etapaNombre: Uno
-        "401":
-          description: No autorizado
-        "403":
-          description: Prohibido
+                    example: 'Terror'
+                duracion:
+                  type: string
+                  example: '230'
+                costoUnitario:
+                  type: string
+                  example: 78.9
+                copias:
+                  type: string
+                  example: 5
+                reparto:
+                  type: array
+                  items:
+                    type:string
+                  example: ["Jhonny Deep", "Cristina Picci"]
+      responses:
+        '200':
+          description: OK
+    delete:
+      parameters:
+        - in: path
+          name: idVideo
+      summary: Servicio para eliminar 1 video
+      tags: ['videos']
+      operationId: get-api-v1-videos-single-del
+      responses:
+        '200':
+          description: OK
+  /videos/{idVideo}/alta:
+    patch:
+      parameters:
+        - in: path
+          name: idVideo
+      summary: Servicio para dar de alta una copia
+      tags: ['videos']
+      operationId: get-api-v1-clientes-single
+      responses:
+        '200':
+          description: OK
+  /videos/{idVideo}/baja:
+    patch:
+      parameters:
+        - in: path
+          name: idVideo
+      summary: Servicio para dar de baja 1 copia
+      tags: ['videos']
+      operationId: get-api-v1-clientes-single
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                motivo:
+                  type: string
+                  example: ' Baja, no devolvio'
+      responses:
+        '200':
+          description: OK
+
+  /prestamos:
+    post:
+      summary: Servicio para crear un prestamo de video
+      tags: ['prestamos']
+      operationId: post-api-v1-videos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cliente:
+                  type: string
+                  example: '000000000000000000000001'
+                videos:
+                  type: array
+                  items:
+                    type: string
+                  example:  [ "6095c80efc36d5432983dd2b", "569190cc24de1e0ce2dfcd59", "569190cc24de1e0ce2dfcd5b" ]
+                fechaDevolucion:
+                  type: string
+                  example: "2021-05-01"
+                diasPrestamo:
+                  type: number
+                  example: 3
+      responses:
+        '200':
+          description: OK
+    get:
+      summary: Servicio para recuperar prestamos
+      tags: ['prestamos']
+      operationId: get-api-v1-vieos
+      responses:
+        '200':
+          description: OK
+  /prestamos/{idPrestamo}:
+    get:
+      parameters:
+        - in: path
+          name: idPrestamo
+      summary: Servicio para recuperar 1 prestamo
+      tags: ['prestamos']
+      operationId: get-api-v1-videos-single
+      responses:
+        '200':
+          description: OK
+    put:
+      parameters:
+        - in: path
+          name: idPrestamo
+      summary: Servicio para editar 1 prestamo
+      tags: ['prestamos']
+      operationId: get-api-v1-prestamos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cliente:
+                  type: string
+                  example: '000000000000000000000001'
+                videos:
+                  type: array
+                  items:
+                    type: string
+                  example:  [ "6095c80efc36d5432983dd2b", "569190cc24de1e0ce2dfcd59", "569190cc24de1e0ce2dfcd5b" ]
+                fechaDevolucion:
+                  type: string
+                  example: "2021-05-01"
+                diasPrestamo:
+                  type: number
+                  example: 3
+      responses:
+        '200':
+          description: OK
+    delete:
+      parameters:
+        - in: path
+          name: idPrestamo
+      summary: Servicio para eliminar 1 prestamo
+      tags: ['prestamos']
+      operationId: get-api-v1-videos-prestamo-del
+      responses:
+        '200':
+          description: OK
+  /prestamos/devueltos:
+    get:
+      summary: Servicio para listar devueltos
+      tags: ['prestamos']
+      operationId: get-api-v1-prestamos-devuelot
+      responses:
+        '200':
+          description: OK
+  /prestamos/pendientes:
+    get:
+      summary: Servicio para listar pendientes
+      tags: ['prestamos']
+      operationId: get-api-v1-prestamos-pendientes
+      responses:
+        '200':
+          description: OK
+  /prestamos/infractores:
+    get:
+      summary: Servicio para listar infractores
+      tags: ['prestamos']
+      operationId: get-api-v1-prestamos-infractores
+      responses:
+        '200':
+          description: OK
+  /prestamos/ranking:
+    get:
+      summary: Servicio para listar ranking
+      tags: ['prestamos']
+      operationId: get-api-v1-prestamos-ranking
+      responses:
+        '200':
+          description: OK

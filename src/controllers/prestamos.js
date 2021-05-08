@@ -1,5 +1,5 @@
-const { Prestamos } = require('../models');
-const { listar, crear, mostrar, actualizar } = require('../utils/dao');
+const { Prestamos, Descuentos, Tarifas } = require('../models');
+const { listar, crear, mostrar, actualizar, eliminar } = require('../utils/dao');
 const { mensajeError, mensajeExito } = require('../utils/handleResponse');
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
@@ -175,6 +175,18 @@ module.exports = {
   crear: async (req, res) => {
     try {
       const prestamo = req.body;
+      const costo = await Tarifas.db.findOne({ dias: prestamo.diasPrestamo });
+      if (!costo) {
+        throw new Error('No se puede hacerun prestamo mas alla de los 6 dias.');
+      }
+      const descuento = await Descuentos.db.findOne({ 
+          minimo: { $lte: prestamo.videos.length }, 
+        maximo: { $gte: prestamo.videos.length } 
+      });
+      prestamo.descuento = 0;
+      prestamo.importeTotal = parseFloat(costo.costo * prestamo.videos.length);
+      if (descuento) prestamo.descuento = (descuento.descuento/ 100)  * prestamo.importeTotal;
+      prestamo.importeTotal = prestamo.importeTotal - prestamo.descuento;
       const respuesta = await crear(Prestamos.db, prestamo);
       if (respuesta) {
         mensajeExito(res, 'El prestamo fue creado correctamente', 200, respuesta);
@@ -189,6 +201,19 @@ module.exports = {
     try {
       const { idPrestamo } = req.params;
       const prestamo = req.body;
+      const costo = await Tarifas.db.findOne({ dias: prestamo.diasPrestamo });
+      if (!costo) {
+        throw new Error('No se puede hacerun prestamo mas alla de los 6 dias.');
+      }
+      const descuento = await Descuentos.db.findOne({ 
+          minimo: { $lte: prestamo.videos.length }, 
+        maximo: { $gte: prestamo.videos.length } 
+      });
+      prestamo.descuento = 0;
+      prestamo.importeTotal = parseFloat(costo.costo * prestamo.videos.length);
+      if (descuento) prestamo.descuento = (descuento.descuento/ 100)  * prestamo.importeTotal;
+      prestamo.importeTotal = prestamo.importeTotal - prestamo.descuento;
+
       const respuesta = await actualizar(Prestamos.db, idPrestamo, prestamo, {})
       if (respuesta) {
         mensajeExito(res, 'El prestamo fue actualizado correctamente', 200, respuesta);

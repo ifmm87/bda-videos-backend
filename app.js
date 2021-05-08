@@ -13,7 +13,12 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, PUT, OPTIONS');
   next();
 });
-app.use('/apidoc', express.static('./docs/openapi.yaml'));
+
+var swaggerUi = require('swagger-ui-express');
+var YAML = require('yamljs');
+const swaggerDocument = YAML.load('./docs/openapi.yml');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// app.use('/apidoc', express.static('./docs/openapi.yml'));
 //---------------Rutas------------//
 app.use('/prestamos', Prestamos);
 app.use('/videos', Videos);

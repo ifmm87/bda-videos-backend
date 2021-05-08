@@ -56,6 +56,11 @@ PATCH http://localhost:1987/clientes/000000000000000000000001/desbloquear
 cache-control: no-cache
 Content-Type: application/json
 ###
+# Historial cliente
+GET http://localhost:1987/clientes/000000000000000000000001/historial
+cache-control: no-cache
+Content-Type: application/json
+###
 
 
 # VIDEOS
@@ -120,23 +125,76 @@ cache-control: no-cache
 Content-Type: application/json
 
 ###
-# dar de alta un video
-PATCH http://localhost:1987/videos/569190ca24de1e0ce2dfcd4f/alta
-cache-control: no-cache
-Content-Type: application/json
 
-{
-  "motivoBloqueo": "bloqueado por moroso"
-}
 ###
 
-# videos
+# PRESTAMOS
 #
-PATCH http://localhost:1987/videos/569190ca24de1e0ce2dfcd4f/alta
+# Recuperar todos los prestamos
+GET http://localhost:1987/prestamos
+cache-control: no-cache
+Content-Type: application/json
+###
+# Crear un prestamo
+POST http://localhost:1987/prestamos
 cache-control: no-cache
 Content-Type: application/json
 
-{
-  "motivoBloqueo": "bloqueado por moroso"
+{   
+  "cliente":"000000000000000000000001",   
+  "videos": [
+        "6095c80efc36d5432983dd2b",
+        "569190cc24de1e0ce2dfcd59",
+        "569190cc24de1e0ce2dfcd5b"
+        ],
+  "fechaDevolucion": "2021-05-01",    
+  "diasPrestamo": 5
 }
+###
+# Editar un prestamo
+PUT http://localhost:1987/prestamos/6095fb88f2f619dd7fc863dc
+cache-control: no-cache
+Content-Type: application/json
+
+{   
+  "cliente":"000000000000000000000001",   
+"videos": [
+        "6095c80efc36d5432983dd2b",
+        "569190cc24de1e0ce2dfcd59",
+        "569190cc24de1e0ce2dfcd5b"
+        ],
+  "fechaDevolucion": "2021-05-01",    
+  "diasPrestamo": 3
+}
+###
+# Recuperar un prestamo
+GET http://localhost:1987/prestamos/6095fb88f2f619dd7fc863dc
+cache-control: no-cache
+Content-Type: application/json
+###
+# Delete un prestamo
+DELETE http://localhost:1987/prestamos/6095ea5a034444ac1a072e2c
+cache-control: no-cache
+Content-Type: application/json
+###
+# devueltos un prestamo
+GET http://localhost:1987/prestamos/devueltos
+cache-control: no-cache
+Content-Type: application/json
+###
+
+# pendientes prestamo
+GET http://localhost:1987/prestamos/pendientes
+cache-control: no-cache
+Content-Type: application/json
+###
+# infractores prestamo
+GET http://localhost:1987/prestamos/infractores
+cache-control: no-cache
+Content-Type: application/json
+###
+# ranking prestamo
+GET http://localhost:1987/prestamos/ranking
+cache-control: no-cache
+Content-Type: application/json
 ###
