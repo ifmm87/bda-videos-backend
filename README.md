@@ -73,6 +73,7 @@ dicididó bloquearlo (los clientes bloqueados no pueden rentar películas).
 Para una correcta instalación ver el siguiente enlace:
 > [INSTALL.md](INSTALL.md)
 # 3. Configuración en alta disponibilidad de la base de datos.
+
 > [CONFIG-HA.md](CONFIG-HA.md)
 
 # 4. Entregables
