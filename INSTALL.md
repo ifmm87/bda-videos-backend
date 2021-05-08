@@ -73,8 +73,9 @@ Configurar el archivo config/app.json especificando las rutas para la base de da
 |---|---|
 ```
 {
-  "mongoUrl": "mongodb://localhost/videos",
-   "mongoUrlDev": "mongodb://localhost/videos"
+  "mongoUrl": "mongodb://primary,secondary1,secondary2/movies",
+  "mongoUrlDev": "mongodb://primary,secondary1,secondary2/movies",
+  "mongoUrlTest": "mongodb://primary,secondary1,secondary2/movies"
 }
 ```
 #### 2.3 Cargado de datos de prueba (seeders)

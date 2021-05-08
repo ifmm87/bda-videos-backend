@@ -10,9 +10,9 @@ ilustraremos la siguiente configuración:
 
 ![replica](docs/replica-local.png)
 
-  - Nodo Primario Arch Linux 16gb RAM Core i7 8th gen 
-  - Nodo Secundario Raspberry Pi 4/ Raspberry pi OS 4gb Ram 
-  - Nodo Secundario Raspberry Pi 4/ Raspberry pi OS 4gb Ram
+  - Nodo Primario Raspberry pi 4/ Ubuntu 20.04 4gb ram
+  - Nodo Secundario Raspberry Pi 4/ Ubuntu 20.04 4gb Ram 
+  - Nodo Secundario Raspberry Pi 4/ Ubuntu 20.04  4gb Ram
 
 Notaremos que los tres nodos estan en la misma red.
 
@@ -68,7 +68,7 @@ Primary
 Hosts
 ```
 echo '127.0.0.1     primary'  >> /etc/hosts 
-echo '192.168.100.5     secondary1'  >> /etc/hosts 
+echo '192.168.100.59     secondary1'  >> /etc/hosts 
 echo '192.168.100.66     secondary2'  >> /etc/hosts 
 ```
 Secondary 1
@@ -76,7 +76,7 @@ Secondary 1
 Hosts
 ```
 echo '127.0.0.1     secondary1'  >> /etc/hosts 
-echo '192.168.100.23     primary'  >> /etc/hosts 
+echo '192.168.100.58     primary'  >> /etc/hosts 
 echo '192.168.100.66     secondary2'  >> /etc/hosts 
 ```
 
@@ -85,8 +85,8 @@ Secondary 2
 Hosts
 ```
 echo '127.0.0.1     secondary2'  >> /etc/hosts 
-echo '192.168.100.23     primary'  >> /etc/hosts 
-echo '192.168.100.66     secondary1'  >> /etc/hosts 
+echo '192.168.100.58     primary'  >> /etc/hosts 
+echo '192.168.100.59     secondary1'  >> /etc/hosts 
 ```
 Editar /etc/mongodb.conf (como root) en todos los nodos incluido el Primary para que quede de la siguiente manera:
 ```
@@ -121,5 +121,9 @@ En el nodo Primary ejecutar la siguiente sentencia
 ```
  rs.status()
 ```
+Para causar una caida del nodo Primary podemos provocar la caida del servicio
 
+```
+sudo systemctl stop mongod.service
+```
 
