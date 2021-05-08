@@ -66,6 +66,8 @@ dicididó bloquearlo (los clientes bloqueados no pueden rentar películas).
   3. Deseo poder definir y modificar descuentos por cantidad de películas.
     a. Si lleva de 3 a 5 peliculas 5% de descuento.
     b. Si lleva mas de 5 peliculas 10% de descuento.
+### Solución
+![Casos](docs/diagrama0.png)
 ### Casos de uso
 ![Casos de Uso](docs/casos-uso.png)
 

@@ -12,7 +12,7 @@ paths:
     post:
       summary: Servicio para crear un nuevo cliente
       tags: ['clientes']
-      operationId: post-api-v1-clientes
+      operationId: post-api-v1-clientes1
       requestBody:
         content:
           application/json:
@@ -46,7 +46,7 @@ paths:
     get:
       summary: Servicio para recuperar clientes
       tags: ['clientes']
-      operationId: get-api-v1-clientes
+      operationId: get-api-v1-clientes2
       responses:
         '200':
           description: OK
@@ -57,7 +57,7 @@ paths:
           name: idCliente
       summary: Servicio para recuperar 1 cliente
       tags: ['clientes']
-      operationId: get-api-v1-clientes-single
+      operationId: get-api-v1-clientes-single3
       responses:
         '200':
           description: OK
@@ -67,7 +67,7 @@ paths:
           name: idCliente
       summary: Servicio para editar 1 cliente
       tags: ['clientes']
-      operationId: get-api-v1-clientes-single
+      operationId: get-api-v1-clientes-single4
       requestBody:
         content:
           application/json:
@@ -104,7 +104,7 @@ paths:
           name: idCliente
       summary: Servicio para eliminar 1 cliente
       tags: ['clientes']
-      operationId: get-api-v1-clientes-single
+      operationId: get-api-v1-clientes-single5
       responses:
         '200':
           description: OK
@@ -115,7 +115,7 @@ paths:
           name: idCliente
       summary: Servicio para bloquear 1 cliente
       tags: ['clientes']
-      operationId: get-api-v1-clientes-single
+      operationId: get-api-v1-clientes-single6
       requestBody:
         content:
           application/json:
@@ -135,7 +135,7 @@ paths:
           name: idCliente
       summary: Servicio para desbloquear 1 cliente
       tags: ['clientes']
-      operationId: get-api-v1-clientes-single
+      operationId: get-api-v1-clientes-single7
       responses:
         '200':
           description: OK
@@ -146,7 +146,7 @@ paths:
           name: idCliente
       summary: Servicio para bloquear 1 cliente
       tags: ['clientes']
-      operationId: get-api-v1-clientes-single
+      operationId: get-api-v1-clientes-single8
       responses:
         '200':
           description: OK
@@ -263,7 +263,7 @@ paths:
           name: idVideo
       summary: Servicio para dar de alta una copia
       tags: ['videos']
-      operationId: get-api-v1-clientes-single
+      operationId: get-api-v1-clientes-single-a
       responses:
         '200':
           description: OK
@@ -274,7 +274,7 @@ paths:
           name: idVideo
       summary: Servicio para dar de baja 1 copia
       tags: ['videos']
-      operationId: get-api-v1-clientes-single
+      operationId: get-api-v1-clientes-single-b
       requestBody:
         content:
           application/json:
@@ -330,7 +330,7 @@ paths:
           name: idPrestamo
       summary: Servicio para recuperar 1 prestamo
       tags: ['prestamos']
-      operationId: get-api-v1-videos-single
+      operationId: get-api-v1-videos-singleaa
       responses:
         '200':
           description: OK
