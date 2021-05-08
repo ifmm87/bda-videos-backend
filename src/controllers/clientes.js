@@ -1,5 +1,5 @@
 const { Clientes, Prestamos } = require('../models');
-const { listar, crear, mostrar, actualizar } = require('../utils/dao');
+const { listar, crear, mostrar, actualizar, eliminar} = require('../utils/dao');
 const { mensajeError, mensajeExito } = require('../utils/handleResponse');
 const mongoose = require('mongoose');
 const { ObjectId } = mongoose.Types;
@@ -10,7 +10,7 @@ module.exports = {
   listar: async (req, res) => {
     debug('listando clientes');
     try {
-      const respuesta = await listar(Clientes.db, {}, {}, {});
+      const respuesta = await listar(Clientes.db, {}, {deleted: false}, {});
       mensajeExito(res, 'listado recuperado correctamente', 200, respuesta);
     } catch (error) {
       mensajeError(res, error, 400)
@@ -117,7 +117,7 @@ module.exports = {
     try {
       const { idCliente } = req.params;
       const { motivoBloqueo } = req.body;
-      const respuesta = await Clientes.db.update({_id: idCliente}, {
+      const respuesta = await Clientes.db.updateOne({_id: idCliente}, {
         bloqueado: true,
         motivoBloqueo: motivoBloqueo
       });
@@ -130,8 +130,7 @@ module.exports = {
   desbloquear: async (req, res) => {
     try {
       const { idCliente } = req.params;
-      const { motivoBloqueo } = req.body;
-      const respuesta = await Clientes.db.update({_id: idCliente}, {
+      const respuesta = await Clientes.db.updateOne({_id: idCliente}, {
         bloqueado: false,
         motivoBloqueo: ''
       });

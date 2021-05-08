@@ -1,5 +1,5 @@
 const { Videos, Bajas } = require('../models');
-const { listar, crear, mostrar, actualizar } = require('../utils/dao');
+const { listar, crear, mostrar, actualizar, eliminar} = require('../utils/dao');
 const { mensajeError, mensajeExito } = require('../utils/handleResponse');
 const Debug = require('debug');
 const debug = new Debug('videos_controller');
@@ -8,7 +8,7 @@ const { ObjectId } = mongoose.Types;
 module.exports = {
   listar: async (req, res) => {
     try {
-      const respuesta = await listar(Videos.db, {}, {}, {});
+      const respuesta = await listar(Videos.db,{}, { deleted: false }, {});
       mensajeExito(res, 'listado recuperado correctamente', 200, respuesta);
     } catch (error) {
       mensajeError(res, error, 400)
@@ -44,9 +44,9 @@ module.exports = {
   },
   bajaCopia: async (req, res) => {
     try {
-      const idVideo = req.params;
+      const { idVideo } = req.params;
       const { motivo } = req.body;
-      const respuesta = await Videos.db.update({_id: idVideo}, { $set: { copias: copias - 1 } });
+      const respuesta = await Videos.db.updateOne({_id: ObjectId(idVideo) }, { $inc: { copias: - 1 } });
       const respuestaBaja = await Bajas.db.create({
         video: idVideo,
         motivo
@@ -64,9 +64,7 @@ module.exports = {
   altaCopia: async (req, res) => {
     try {
       const  { idVideo } = req.params;
-      console.log(idVideo);
-      const respuesta = await Videos.db.update({_id: ObjectId(idVideo)}, { $set: { copias: parseInt('$copias') + 1 } });
-
+      const respuesta = await Videos.db.updateOne({_id: ObjectId(idVideo)}, { $inc : { copias: 1 }  });
       if (respuesta) {
         mensajeExito(res, ' Copia fue creada correctamente.', 200, respuesta);
       } else {
@@ -93,6 +91,7 @@ module.exports = {
     try {
       const { idVideo } = req.params;
       const respuesta = await eliminar(Videos.db, idVideo);
+      console.log(respuesta)
       if (respuesta) {
         mensajeExito(res, 'El video se eliminó correctamente.', 200, respuesta);
       }

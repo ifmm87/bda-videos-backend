@@ -90,21 +90,7 @@ module.exports = {
           deleteAt: Date.now(),
           userDeleted: idUsuario
         }
-        modelo.where({_id: id}).update(borrado).exec(async (err, result) => {
-          for (let dependiente of dependientes.modelos) {
-            let where = {}
-            if ( Object.keys(dependientes.singleWhere).length > 0) {
-              for(single of dependientes.singleWhere) {
-                if (dependiente.modelName == single.modelo.modelName){
-                  Object.assign(where, dependientes.globalWhere, single.where)
-                } else {
-                  Object.assign(where, dependientes.globalWhere)
-                }
-              }
-              await dependiente.where(where).updateMany(borrado).exec()
-            }
-          }
-        })
+        return modelo.where({_id: id}).updateOne(borrado);
       } else {
         throw new Error('No existe el registro solicitado.')
       }

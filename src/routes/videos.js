@@ -7,5 +7,5 @@ app.post('/', Videos.crear);
 app.put('/:idVideo', Videos.modificar);
 app.patch('/:idVideo/baja', Videos.bajaCopia);
 app.patch('/:idVideo/alta', Videos.altaCopia);
-app.delete('/', Videos.eliminar);
+app.delete('/:idVideo', Videos.eliminar);
 module.exports = app;

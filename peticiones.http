@@ -1,5 +1,46 @@
 
-# cliente
+# CLIENTES
+## Recuperar TODOS los clientes
+GET http://localhost:1987/clientes
+Content-Type: application/json
+###
+## Crear un clientes
+POST http://localhost:1987/clientes
+Content-Type: application/json
+
+{
+  "nombreCompleto": "Jose Jose",
+  "nit": "123456",
+  "celular": "78898989",
+  "fechaNacimiento": "2000-10-10",
+  "direccion": "Direccion 123",
+  "latitud": "-16,8989898",
+  "longitud": "-67,989898"
+}
+###
+## Editar un clientes
+PUT http://localhost:1987/clientes/000000000000000000000001
+Content-Type: application/json
+
+{
+  "nombreCompleto": "Jose Jose modificado",
+  "nit": "123456",
+  "celular": "78898989",
+  "fechaNacimiento": "2000-10-10",
+  "direccion": "Direccion 123",
+  "latitud": "-16,8989898",
+  "longitud": "-67,989898"
+}
+###
+#Recuperar un cliente
+GET http://localhost:1987/clientes/000000000000000000000001
+Content-Type: application/json
+###
+# Eliminar cliente 
+DELETE http://localhost:1987/clientes/000000000000000000000001
+cache-control: no-cache
+Content-Type: application/json
+###
 # bloquear cliente
 PATCH http://localhost:1987/clientes/000000000000000000000001/bloquear
 cache-control: no-cache
@@ -10,9 +51,76 @@ Content-Type: application/json
 }
 ###
 
+# desbloquear cliente
+PATCH http://localhost:1987/clientes/000000000000000000000001/desbloquear
+cache-control: no-cache
+Content-Type: application/json
+###
 
-# videos
-# 
+
+# VIDEOS
+## Recuperar TODOS los
+GET http://localhost:1987/videos
+Content-Type: application/json
+###
+## Crear un video
+POST http://localhost:1987/videos
+Content-Type: application/json
+
+  {
+    "duracion": 230,
+    "genero": "Terror",
+    "titulo": "Sleepy Hollow",
+    "anioPublicacion": "1998",
+    "reparto":
+        [ "Jhonny Deep", "Cristina Picci"],
+    "costoUnitario": 123.78,
+    "copias": 2
+  }
+###
+## Editar un video
+PUT http://localhost:1987/videos/6095c80efc36d5432983dd2b
+Content-Type: application/json
+
+  {
+    "duracion": 230,
+    "genero": "Terror",
+    "titulo": "Sleepy Hollowi modificado",
+    "anioPublicacion": "1998",
+    "reparto":
+        [ "Jhonny Deep", "Cristina Picci"],
+    "costoUnitario": 123.78,
+    "copias": 2
+  }
+###
+## Recuperar un video
+GET http://localhost:1987/videos/6095c80efc36d5432983dd2b
+Content-Type: application/json
+###
+# Dar de alta un video
+PATCH http://localhost:1987/videos/6095c80efc36d5432983dd2b/alta
+cache-control: no-cache
+Content-Type: application/json
+
+{
+}
+###
+# Dar de baja un video
+PATCH http://localhost:1987/videos/6095c80efc36d5432983dd2b/baja
+cache-control: no-cache
+Content-Type: application/json
+
+{
+  "motivo": "Baja por que no se devolvio"
+}
+###
+# Eliminar video 
+DELETE http://localhost:1987/videos/6095c80efc36d5432983dd2b
+cache-control: no-cache
+Content-Type: application/json
+
+###
+# dar de alta un video
 PATCH http://localhost:1987/videos/569190ca24de1e0ce2dfcd4f/alta
 cache-control: no-cache
 Content-Type: application/json
