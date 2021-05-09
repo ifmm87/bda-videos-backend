@@ -66,10 +66,10 @@ dicididó bloquearlo (los clientes bloqueados no pueden rentar películas).
   3. Deseo poder definir y modificar descuentos por cantidad de películas.
     a. Si lleva de 3 a 5 peliculas 5% de descuento.
     b. Si lleva mas de 5 peliculas 10% de descuento.
-### Solución
-![Casos](docs/diagrama0.png)
 ### Casos de uso
 ![Casos de Uso](docs/casos-uso.png)
+### Solución
+![Casos](docs/diagrama0.png)
 
 # 2. Instalación del proyecto
 Para una correcta instalación ver el siguiente enlace:
@@ -107,10 +107,10 @@ Para una correcta instalación ver el siguiente enlace:
   #### c) Script de llenado de la base de datos. 
   ```
   mongoimport --db videos_standalone --collection tarifas --drop --file bk/tarifas.json
-  mongoimport --db videos_standalone --collection tarifas --drop --file bk/descuentos.json
-  mongoimport --db videos_standalone --collection tarifas --drop --file bk/videos.json
-  mongoimport --db videos_standalone --collection tarifas --drop --file bk/clientes.json
-  mongoimport --db videos_standalone --collection tarifas --drop --file bk/prestamos.json
+  mongoimport --db videos_standalone --collection descuentos --drop --file bk/descuentos.json
+  mongoimport --db videos_standalone --collection videos --drop --file bk/videos.json
+  mongoimport --db videos_standalone --collection clientes --drop --file bk/clientes.json
+  mongoimport --db videos_standalone --collection prestamos --drop --file bk/prestamos.json
 
   ```
 
